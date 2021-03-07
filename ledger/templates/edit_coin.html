@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit Coin
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h1>Edit Coin</h1>
+    <br/>
+
+    <div class="form-group">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <!-- {{ form.as_table }} -->
+            <div style="text-align: center;">
+                <button class="btn btn-secondary" style="width: 10vw;">Save</button>
+                <a href="{% url 'home' %}" class="btn btn-secondary" style="width: 10vw;">Cancel</a> 
+                {% comment %} <a href="{% url 'delete-coin' id %}" class="btn btn-secondary" style="width: 10vw;">Delete</a>  {% endcomment %}
+            </div>          
+        </form>
+        
+    </div>
+
+{% else %}
+    How did you get here?
+{% endif %}
+
+{% endblock %}

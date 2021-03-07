@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Delete Transaction
+{% endblock %}
+
+
+{% block content %}
+
+<br/>
+<h2 align="center">Delete Transaction</h2>
+<br/>
+<hr style="height:1px; margin: auto;">
+<br/>
+
+<!-- {% if message_name %}
+    Thank you {{ message_name }}<br/>Your email has been sent
+{% endif %} -->
+
+{% if user.is_authenticated %}
+    <br/>
+    {% if all_coins == 'all_coins' %}
+        <div style="margin: auto; text-align: center; width: 100%; height: 100%;">
+            <form action='.' method='POST'>{% csrf_token %}
+                <h3>Are you sure you want to delete all transactions?</h3>
+                </br>
+                <input class="btn btn-primary" style="width: 40%; margin: auto;" type='submit' value='Yes' /> 
+                <a href="{% url 'home' %}"><button class="btn btn-primary" style="width: 40%; margin: auto;" 
+                type="button">Cancel</button></a>
+            </form>
+        </div>  
+    {% else %}
+
+        <div style="margin: auto; text-align: center; width: 100%; height: 100%; overflow-x: auto;">
+            <table class="table table-dark table-bordered table-striped">
+                <th style="margin: auto; text-align: center;">Coin Name</th>
+                <th style="margin: auto; text-align: center;">Amount</th>
+                <th style="margin: auto; text-align: center;">Date Purchased</th>
+                <th style="margin: auto; text-align: center;">Date Sold</th>
+                <th style="margin: auto; text-align: center;">Gain</th>
+                <th style="margin: auto; text-align: center;">Purchase Price</th>
+                <th style="margin: auto; text-align: center;">Current Price</th>
+                <th style="margin: auto; text-align: center;">Trend</th>
+                <tr>
+                    <td scope="col" style="width: 10vw; margin: auto; text-align: center;"><a>{{ deleted_coin.name }}</a></td>
+                    <td scope="col" style="width: 10vw; margin: auto; text-align: center;"><a>{{ deleted_coin.total_amount }}</a></td>
+                    <td scope="col" style="width: 15vw; margin: auto; text-align: center;"><a>
+                        {{ deleted_coin.date_bought|date:'m-d-Y H:i' }}
+                    </a></td>
+                    <td scope="col" style="width: 15vw; margin: auto; text-align: center;"><a>
+                        {% if deleted_coin.sold %}
+                            <a>{{ deleted_coin.date_sold|date:'m-d-Y H:i' }}</a>
+                        {% else %}
+                            <a>--</a>
+                        {% endif %}
+                    </a></td>
+                    <td scope="col" style="width: 10vw; margin: auto; text-align: center;"><a>
+                        {% if deleted_coin.sold %}
+                            {% if deleted_coin.gain > 0 %}
+                                <a style="color: chartreuse;">${{ deleted_coin.gain|floatformat:2 }}</a>
+                            {% else %}
+                                <a style="color: red;">${{ deleted_coin.gain|floatformat:2 }}</a>
+                            {% endif %}
+                        {% else %}
+                            <a>--</a>
+                        {% endif %}
+                    </a></td>
+                    <td scope="col" style="width: 10vw; margin: auto; text-align: center;"><a>
+                        {{ deleted_coin.custom_price|floatformat:2 }}
+                    </a></td>
+                    <td scope="col" style="width: 10vw; margin: auto; text-align: center;"><a>
+                        {{ deleted_coin.current_price|floatformat:2 }}
+                    </a></td>
+                    {% if deleted_coin.price_difference > 0 %}
+                    <td scope="col" style="color: chartreuse; width: 10vw; margin: auto; text-align: center;"><a>
+                        {{ deleted_coin.price_difference|floatformat:5 }} %
+                    </a></td>
+                    {% else %}
+                    <td scope="col" style="color: red; width: 10vw; margin: auto; text-align: center;"><a>
+                        {{ deleted_coin.price_difference|floatformat:5 }} %
+                    </a></td>
+                    {% endif %}
+                </tr>
+            </table>
+        </div>
+    
+        
+        <br/>
+        <div style="margin: auto; text-align: center; width: 100%; height: 100%;">
+            <form action='.' method='POST'>{% csrf_token %}
+                <h3>Are you sure you want to delete this {{ deleted_coin.name }} transaction?</h3>
+                <br/>
+                <input class="btn btn-primary" style="width: 40%; margin: auto;" type='submit' value='Yes' /> 
+                <a href="{% url 'home' %}"><button class="btn btn-primary" style="width: 40%; margin: auto;" 
+                type="button">Cancel</button></a>
+            </form>
+        </div>  
+    {% endif %}
+{% else %}
+    <div style="margin: auto; text-align: center;">Log in to continue</div>
+    <br/>
+    <div class="mb-3">
+        <a class="btn btn-primary" style="width: 100%; height: 100%;" href="{% url 'login' %}" role="button">Log In</a>
+    </div>
+{% endif %}
+    
+{% endblock %}

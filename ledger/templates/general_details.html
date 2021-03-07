@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ name }} Details
+{% endblock %}
+
+{% block content %}
+
+<br/>
+<h2 align="center">{{ name }} Details</h2>
+<br/>
+<hr style="height:1px; margin: auto;">
+<br/>
+
+<iframe src="https://lunarcrush.com/widgets/candlestick?symbol='+{{ symbol }}+'&interval=1 Week&animation=false&theme=dark" 
+id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style="width: 100%; height: 450px;"></iframe>
+  
+{% endblock %}

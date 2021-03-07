@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    All Prices
+{% endblock %}
+
+
+{% block content %}
+
+<br/>
+<h2 align="center">All Prices</h2>
+<br/>
+<hr style="height:1px; margin: auto;">
+<br/>
+
+<section id='ticker'>
+    <div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <marquee>
+                    {% if selected_ticker_prices|length > 0 %}
+                        {% for price in selected_ticker_prices %}
+                            {% comment %} <strong style="font-size: x-large;"> ~ </strong> {% endcomment %}
+                            {% if price.price_1h > 0 %}
+                                <light style="color: chartreuse; font-size: x-large; padding: 10px">
+                                <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                ${{ price.price|floatformat:2 }}</light>
+                            {% else %}
+                                <light style="color: red; font-size: x-large; padding: 10px">
+                                <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                ${{ price.price|floatformat:2 }}</light>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        {% for price in prices %}
+                            {% comment %} <strong style="font-size: x-large;"> ~ </strong> {% endcomment %}
+                            {% if price.price_1h > 0 %}
+                                <light style="color: chartreuse; font-size: x-large; padding: 10px">
+                                <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                ${{ price.price|floatformat:2 }}</light>
+                            {% else %}
+                                <light style="color: red; font-size: x-large; padding: 10px">
+                                <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                ${{ price.price|floatformat:2 }}</light>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </marquee>
+            </div>
+        </div>
+    </div>
+</section>
+<br/>
+
+<div style="margin: auto; text-align: center; width: 100%; height: 100%; overflow-x: auto;">
+    <table class="table table-dark table-bordered table-striped" width="100%">
+        <form action='.' method='POST'>{% csrf_token %}
+            <th style="margin: auto; text-align: center; width: 10vw;">
+                <select name="coin_name" class="btn btn-outline-light dropdown-toggle" 
+                style="width: 10vw; margin: auto; font-size: large" onChange='form.submit()'>
+                    <option selected='selected' disabled>Coin Name</option>
+                    <option value="Desc">Desc</option>
+                    <option value="Asc">Asc</option>
+                </select>
+            </th>
+            <th style="margin: auto; text-align: center; width: 10vw;">
+                <select name="price_usd" class="btn btn-outline-light dropdown-toggle" 
+                style="width: 10vw; margin: auto; font-size: large" onChange='form.submit()'>
+                    <option selected='selected' disabled>Price in USD</option>
+                    <option value="Desc">Desc</option>
+                    <option value="Asc">Asc</option>
+                </select>
+            </th>
+            <th style="margin: auto; text-align: center; width: 10vw;">
+                <select name="price_1h" class="btn btn-outline-light dropdown-toggle" 
+                style="width: 10vw; margin: auto; font-size: large" onChange='form.submit()'>
+                    <option selected='selected' disabled>Price change 1h</option>
+                    <option value="Desc">Desc</option>
+                    <option value="Asc">Asc</option>
+                </select>
+            </th>
+            <th style="margin: auto; text-align: center; width: 10vw;">
+                <select name="price_24h" class="btn btn-outline-light dropdown-toggle" 
+                style="width: 10vw; margin: auto; font-size: large" onChange='form.submit()'>
+                    <option selected='selected' disabled>Price change 24h</option>
+                    <option value="Desc">Desc</option>
+                    <option value="Asc">Asc</option>
+                </select>
+            </th>
+            <th style="margin: auto; text-align: center; width: 10vw;">
+                <select name="price_btc" class="btn btn-outline-light dropdown-toggle" 
+                style="width: 10vw; margin: auto; font-size: large" onChange='form.submit()'>
+                    <option selected='selected' disabled>Price in BTC</option>
+                    <option value="Desc">Desc</option>
+                    <option value="Asc">Asc</option>
+                </select>
+            </th>
+            <th style="margin: auto; text-align: center; width: 10vw;">
+                <select name="price_eth" class="btn btn-outline-light dropdown-toggle" 
+                style="width: 10vw; margin: auto; font-size: large" onChange='form.submit()'>
+                    <option selected='selected' disabled>Price in ETH</option>
+                    <option value="Desc">Desc</option>
+                    <option value="Asc">Asc</option>
+                </select>
+            </th>
+        </form>
+        {% for coin in coins %}
+            <tr class="align-middle">
+                <td scope="col" style="margin: auto; text-align: center;"><a style="text-decoration: none;"
+                    class="link-light" href="{% url 'general-details' coin.id %}">{{ coin.name }}</a>
+                </td>
+                <td scope="col" style="margin: auto; text-align: center;"><a>${{ coin.price|floatformat:2 }}</a></td>
+                {% if coin.price_1h > 0 %}
+                <td scope="col" style="margin: auto; text-align: center;">
+                <a style="color: chartreuse;">{{ coin.price_1h|floatformat:2 }}%</a></td>
+                {% else %}
+                <td scope="col" style="margin: auto; text-align: center;">
+                <a style="color: red">{{ coin.price_1h|floatformat:2 }}%</a></td>
+                {% endif %}
+                {% if coin.price_24h > 0 %}
+                <td scope="col" style="margin: auto; text-align: center;">
+                <a style="color: chartreuse;">{{ coin.price_24h|floatformat:2 }}%</a></td>
+                {% else %}
+                <td scope="col" style="margin: auto; text-align: center;">
+                <a style="color: red;">{{ coin.price_24h|floatformat:2 }}%</a></td>
+                {% endif %}
+                <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.price_btc }}</a></td>
+                <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.price_eth }}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div style="margin: auto; text-align: center;">Coin prices provided by <a href="https://messari.io/">https://messari.io/</a></div>
+    
+{% endblock %}

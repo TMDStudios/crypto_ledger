@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Add Coin
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    <br/>
+    <h2 align="center">Add Coin</h2>
+    <br/>
+    <hr style="height:1px; margin: auto;">
+    <br/>
+
+    <div class="form-group" style="width: 50%; height: 100%; margin: auto;">
+        <form action="#" method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            Coin: {{ form.name }}
+        </div>
+        <div class="mb-3">
+            Amount: {{ form.amount }}
+        </div>
+        <div class="mb-3">
+            Custom Price: (Leave blank for current price){{ form.custom_price }}
+        </div>
+
+        <br/>
+        <hr style="height:1px; margin: auto;">
+        <br/>
+        
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary" style="width: 100%; height: 100%;">Add</button>
+        </div>
+        </form>
+    </div>
+
+    </br>
+
+    {% comment %} The Problem: {{ issue }} - {{ usr }} {{ coins }} {% endcomment %}
+
+    
+
+    {% comment %} <script>
+        var name = "{{ user.id }}";
+        document.getElementById("author_name").value = name;
+    </script> {% endcomment %}
+
+{% else %}
+    <div style="margin: auto; text-align: center;">Log in to continue</div>
+    <br/>
+    <div class="mb-3">
+        <a class="btn btn-primary" style="width: 100%; height: 100%;" href="{% url 'login' %}" role="button">Log In</a>
+    </div>
+{% endif %}
+
+{% endblock %}
