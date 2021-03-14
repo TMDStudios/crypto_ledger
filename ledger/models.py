@@ -8,6 +8,7 @@ class Profile(models.Model):
     objects = models.Manager()
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     ticker_prices = models.TextField(default="", blank=True, null=True)
+    dark_mode = models.BooleanField(default=True, blank=True)
 
     def __str__(self):
         return str(self.user)
