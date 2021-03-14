@@ -39,6 +39,9 @@ def home(request):
     if request.user.is_authenticated:
         owner = get_object_or_404(User, id=request.user.id)
         context['selected_ticker_prices'] = customize_ticker(owner)
+        user_settings = Profile.objects.all()
+        user_settings = user_settings.filter(user=owner)[0]
+        context['dark_mode'] = user_settings.dark_mode
     prices = Price.objects.all()
     prices = prices.order_by('name')
     overall_total = 0
@@ -208,14 +211,14 @@ def sell_coin(request, id):
         for coin_order in coins:
             if coin_order.name == name and not coin_order.sold and not coin_order.merged:
                 open_order_exists = True
-                coin_order.amount = coin.total_amount  
+                coin_order.amount = coin.total_amount
                 coin_order.total_amount = coin.total_amount
                 coin_order.save()
 
         if not open_order_exists:
             coin.pk = None
             coin.sold = False                
-            coin.value = coin.total_amount * coin.current_price  
+            coin.value = coin.total_amount * coin.current_price
             coin.total_value = coin.total_amount * coin.current_price
             coin.price_difference = coin.current_price / coin.purchase_price * decimal.Decimal('100') - decimal.Decimal('100')
             coin.save()
@@ -225,6 +228,8 @@ def sell_coin(request, id):
 def delete_coin(request, id):  
     if id == 0:
         owner = get_object_or_404(User, id=request.user.id)
+        user_settings = Profile.objects.all()
+        user_settings = user_settings.filter(user=owner)[0]
         coins = Coin.objects.all()
         coins = coins.order_by('-id')
         coins = coins.filter(owner=owner)
@@ -234,7 +239,9 @@ def delete_coin(request, id):
                     coin.delete()
             return redirect('home')
         context = {
-            'all_coins': 'all_coins'
+            'all_coins': 'all_coins',
+            'selected_ticker_prices': customize_ticker(owner),
+            'dark_mode': user_settings.dark_mode
         }
     else:
         coin = get_object_or_404(Coin, id=id)
@@ -261,6 +268,10 @@ def coin_details(request, id):
     context['form'] = form
     context['symbol'] = symbol
 
+    user_settings = Profile.objects.all()
+    user_settings = user_settings.filter(user=owner)[0]
+    context['dark_mode'] = user_settings.dark_mode
+
     return render(request, 'coin_details.html', context)
 
 def general_details(request, id):
@@ -276,6 +287,9 @@ def all_prices(request):
     if request.user.is_authenticated:
         owner = get_object_or_404(User, id=request.user.id)
         context['selected_ticker_prices'] = customize_ticker(owner)
+        user_settings = Profile.objects.all()
+        user_settings = user_settings.filter(user=owner)[0]
+        context['dark_mode'] = user_settings.dark_mode
     coins = Price.objects.all()
     coins = coins.order_by('name') 
 
@@ -333,12 +347,14 @@ def settings(request):
             selected_ticker_prices = form.cleaned_data['ticker_prices']
             user_settings = Profile.objects.all()
             user_settings = user_settings.filter(user=owner)[0]
+            dark_mode = form.cleaned_data['dark_mode']
 
             if not user_settings:
                 user_settings = Profile(user=owner, ticker_prices="")
                 user_settings.save()
 
             user_settings.ticker_prices = ""
+            user_settings.dark_mode = dark_mode
             user_settings.save()
 
             split_prices = ""
@@ -358,9 +374,16 @@ def settings(request):
             usr = request.user.id
             return render(request, 'settings.html', {'issue': issue, 'usr': usr})
     else:
-        form = SettingsForm()
+        owner = get_object_or_404(User, id=request.user.id)
+        user_settings = Profile.objects.all()
+        user_settings = user_settings.filter(user=owner)[0]
+        dark_mode = user_settings.dark_mode
+        if dark_mode:
+            form = SettingsForm(initial={'dark_mode': True})
+        else:
+            form = SettingsForm(initial={'dark_mode': False})
 
-    return render(request, 'settings.html', {'form': form})
+    return render(request, 'settings.html', {'form': form, 'dark_mode': dark_mode})
 
 def get_prices(request):
-    pass
+    return redirect('home')

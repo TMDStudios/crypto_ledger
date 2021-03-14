@@ -20,7 +20,6 @@
                 <marquee>
                     {% if selected_ticker_prices|length > 0 %}
                         {% for price in selected_ticker_prices %}
-                            {% comment %} <strong style="font-size: x-large;"> ~ </strong> {% endcomment %}
                             {% if price.price_1h > 0 %}
                                 <light style="color: chartreuse; font-size: x-large; padding: 10px">
                                 <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
@@ -33,7 +32,6 @@
                         {% endfor %}
                     {% else %}
                         {% for price in prices %}
-                            {% comment %} <strong style="font-size: x-large;"> ~ </strong> {% endcomment %}
                             {% if price.price_1h > 0 %}
                                 <light style="color: chartreuse; font-size: x-large; padding: 10px">
                                 <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
@@ -53,7 +51,11 @@
 <br/>
 
 <div style="margin: auto; text-align: center; width: 100%; height: 100%; overflow-x: auto;">
-    <table class="table table-dark table-bordered table-striped" width="100%">
+    {% if dark_mode %}
+    <table class="table table-dark table-bordered table-striped width: 100%; height: 100%;">
+    {% else %}
+    <table class="table table-bordered table-striped width: 100%; height: 100%;">
+    {% endif %}
         <form action='.' method='POST'>{% csrf_token %}
             <th style="margin: auto; text-align: center; width: 10vw;">
                 <select name="coin_name" class="btn btn-outline-light dropdown-toggle" 

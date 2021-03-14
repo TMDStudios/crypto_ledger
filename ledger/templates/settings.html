@@ -20,16 +20,6 @@
     <hr style="height:1px; margin: auto;">
     <br/>
 
-    {% comment %} <div style="width: 100%; height: 30%;">
-        <form action="." method="POST">
-            {% csrf_token %}
-            {% for item in form %}
-                {{ item }}
-            {% endfor %}
-            <input type="submit" value="Submit" class="btn btn-primary" style="width: 20%; height: 100%;">
-        </form>
-    </div> {% endcomment %}
-
     <div style="width: 100%; height: 30%;">
         <form action="." method="POST">
             {% csrf_token %}
@@ -99,7 +89,7 @@
                 </tr>
                 <tr>
                     {% for item in form.ticker_prices %}
-                        {% if forloop.counter0 > 35 and forloop.counter0 < 40 %}
+                        {% if forloop.counter0 > 34 and forloop.counter0 < 40 %}
                             <td style="margin: auto; text-align: center; color: snow;">
                                 <span style="font-size: large;"> {{ item }} </span>
                             </td>
@@ -116,15 +106,25 @@
                     {% endfor %}
                 </tr>
             </table>
+            <hr style="height:1px; margin: auto;">
+            <br/>
+            <div style="margin: auto; text-align: center; width: 20vw;">Dark Mode</div>
+            <div class="form-switch" style="margin: auto; text-align: center; width: 20vw;">
+                {% if dark_mode %}
+                    {{ form.dark_mode }}
+                {% else %}
+                    {{ form.dark_mode }}
+                {% endif %}
+            </div>
+            <br/>
+            <hr style="height:1px; margin: auto;">
+            <br/>
             <input type="submit" value="Submit" class="btn btn-primary" style="width: 100%; height: 100%;">
         </form>
-    </div>
-    
-
-    {% comment %} {{ ticker_prices }} {% endcomment %}
+    </div>   
 
 {% else %}
-    How did you get here?
+    Something went wrong...
 {% endif %}
 
 {% endblock %}

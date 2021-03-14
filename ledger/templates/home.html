@@ -15,7 +15,6 @@
                 <marquee>
                     {% if selected_ticker_prices|length > 0 %}
                         {% for price in selected_ticker_prices %}
-                            {% comment %} <strong style="font-size: x-large;"> ~ </strong> {% endcomment %}
                             {% if price.price_1h > 0 %}
                                 <light style="color: chartreuse; font-size: x-large; padding: 10px">
                                 <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
@@ -28,7 +27,6 @@
                         {% endfor %}
                     {% else %}
                         {% for price in prices %}
-                            {% comment %} <strong style="font-size: x-large;"> ~ </strong> {% endcomment %}
                             {% if price.price_1h > 0 %}
                                 <light style="color: chartreuse; font-size: x-large; padding: 10px">
                                 <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
@@ -50,7 +48,6 @@
 <br/>
 
 {% if user.is_authenticated %}
-    <!-- You are authenticated {{ user }} -->
     <div style="margin: auto; text-align: center;">
         {% if update_now %}  
             <a href="{% url 'home' %}"class="link-light" style="text-decoration: none;">{{ update_now }}</a>
@@ -60,10 +57,12 @@
     <h5 align="center">Active Orders</h5>
     <br/>
     <div style="margin: auto; text-align: center; width: 100%; height: 100%; overflow-x: auto;">
-        <table class="table table-dark table-bordered table-striped width: 100%; height: 100%;">
+        {% if dark_mode %}
+            <table class="table table-dark table-bordered table-striped width: 100%; height: 100%;">
+        {% else %}
+            <table class="table table-bordered table-striped width: 100%; height: 100%;">
+        {% endif %}
             <th style="margin: auto; text-align: center; width: 10vw;">Coin Name</th>
-            <!-- <th style="margin: auto; text-align: center;">Amount</th> -->
-            <!-- <th style="margin: auto; text-align: center;">Value</th> -->
             <th style="margin: auto; text-align: center; width: 10vw;">Total Amount</th>
             <th style="margin: auto; text-align: center; width: 10vw;">Total Value</th>
             <th style="margin: auto; text-align: center; width: 10vw;">Purchase Price</th>
@@ -71,8 +70,6 @@
             <th style="margin: auto; text-align: center; width: 10vw;">Profit</th>
             <th style="margin: auto; text-align: center; width: 10vw;">Trend</th>
             <th style="margin: auto; text-align: center; width: 20vw;">Trade</th>
-            <!-- <th style="margin: auto; text-align: center;">Edit</th> -->
-            <!-- <th style="margin: auto; text-align: center; width: 10vw;">Delete</th> -->
             {% for coin in coins %}
                 {% if coin.owner == user and not coin.sold and not coin.merged %}
                     <tr class="align-middle">
@@ -120,10 +117,6 @@
                                     </form>    
                             </div>   
                         </td>
-                        <!-- <td scope="col" style="margin: auto; text-align: center;"><a>
-                            <a class="btn btn-outline-secondary btn-sm" style="width: 100%; height: 80%;" 
-                            href="#" role="button">Delete</a>
-                        </a></td> -->
                     </tr>
                 {% endif %}
             {% endfor %}
@@ -161,12 +154,13 @@
     <h5 align="center">Order History</h5>
     
     <br/>
-    <table class="table table-dark table-sm table-bordered table-striped" style="width: 100%; height: 100%; overflow-x: auto;">
+    {% if dark_mode %}
+        <table class="table table-dark table-bordered table-striped" style="width: 100%; height: 100%; overflow-x: auto;">
+    {% else %}
+        <table class="table table-bordered table-striped" style="width: 100%; height: 100%; overflow-x: auto;">
+    {% endif %}
         <th style="margin: auto; text-align: center; width: 12vw;">Coin Name</th>
-        <!-- <th style="margin: auto; text-align: center;">Amount</th> -->
-        <!-- <th style="margin: auto; text-align: center;">Value</th> -->
         <th colspan="6" style="margin: auto; text-align: center; width: 46vw;">Status</th>
-        <!-- <th style="margin: auto; text-align: center;">Edit</th> -->
         <th style="margin: auto; text-align: center; width: 12vw;">
             <a class="btn btn-outline-light btn-sm" style="width: 100%; height: 80%;" 
                         href="{% url 'delete-coin' 0 %}" role="button">Delete All</a>
@@ -178,7 +172,6 @@
                         <td scope="col" style="margin: auto; text-align: center;"><a style="text-decoration: none;"
                             class="link-light" href="{% url 'coin-details' coin.id %}">{{ coin.name }}</a>
                         </td>
-                        <!-- <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.amount }}</a></td> -->
                         
                         {% if coin.gain > 0 %}
                             <td colspan="6" scope="col" style="color: chartreuse; margin: auto; text-align: center;"><a>
@@ -201,10 +194,6 @@
                                 {% endif %}
                             </a></td>
                         {% endif %}
-                        <!-- <td scope="col" style="margin: auto; text-align: center;"><a>
-                            <a class="btn btn-outline-light btn-sm" style="width: 100%; height: 80%;" 
-                            href="{% url 'edit-coin' coin.id %}" role="button">Edit</a>
-                        </a></td> -->
                         <td scope="col" style="margin: auto; text-align: center;"><a>
                             <a class="btn btn-outline-light btn-sm" style="width: 100%; height: 80%;" 
                             href="{% url 'delete-coin' coin.id %}" role="button">Delete</a>
@@ -215,7 +204,6 @@
                     <td scope="col" style="margin: auto; text-align: center;"><a style="text-decoration: none;"
                         class="link-light" href="{% url 'coin-details' coin.id %}">{{ coin.name }}</a>
                     </td>
-                    <!-- <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.amount }}</a></td> -->
                     <td colspan="6" scope="col" style="margin: auto; text-align: center;"><a>
                         {% if coin.custom_price %}
                             Coin Merged | Original Purchase {{ coin.amount }} at ${{ coin.custom_price|floatformat:2 }}
@@ -223,10 +211,6 @@
                             Coin Merged | Original Purchase {{ coin.amount }} at ${{ coin.purchase_price|floatformat:2 }}
                         {% endif %}
                     </a></td>
-                    <!-- <td scope="col" style="margin: auto; text-align: center;"><a>
-                        <a class="btn btn-outline-light btn-sm" style="width: 100%; height: 80%;" 
-                        href="{% url 'edit-coin' coin.id %}" role="button">Edit</a>
-                    </a></td> -->
                     <td scope="col" style="margin: auto; text-align: center;"><a>
                         <a class="btn btn-outline-light btn-sm" style="width: 100%; height: 80%;" 
                         href="{% url 'delete-coin' coin.id %}" role="button">Delete</a>
@@ -235,7 +219,6 @@
                 {% endif %}
             {% endif %}
             
-            <!-- <a>coin info: {{ coin.name }} - {{ coin.total_amount }} - {{ coin.sell_amount }}</a></br> -->
         {% endfor %}
         <tr class="align-middle">
             <td colspan="8" scope="col" style="margin: auto; text-align: center;">
@@ -250,15 +233,6 @@
         </tr>
         
     </table>
-
-    <!-- <a>Last Update: {{ last_update }} == {{ saved_update }} == {{ current_time }}</a></br> -->
-    <!-- <a>
-        {% if update_now %}
-            {{ update_now }}
-        {% endif %}
-    </a> -->
-    <!-- <a class="btn btn-secondary" style="width: 100%; height: 100%;" 
-    href="{% url 'get-prices' %}" role="button">Refresh</a> -->
     
     
 {% else %}
@@ -281,26 +255,20 @@
 <table class="table table-borderless table-striped" style="width: 60%; height: 100%; margin: auto; text-align: center;">
     <tr class="align-middle">
         <td colspan="3" scope="col" style="margin: auto; text-align: center;">
-            <h4 style="color: snow;">   </h4>
+            <a style="font-size: medium;">Please consider supporting Crypto Ledger with a small donation</a>
         </td>
     </tr>
     <tr class="align-middle">
         <td colspan="3" scope="col" style="margin: auto; text-align: center;">
-            <a style="color: snow; font-size: medium;">Please consider supporting Crypto Ledger with a small donation</a>
-        </td>
-    </tr>
-    <tr class="align-middle">
-        <td colspan="3" scope="col" style="margin: auto; text-align: center;">
-            <h4 style="color: snow;">  -  -  -  </h4>
+            <h4>  -  -  -  </h4>
         </td>
     </tr>
     <tr class="align-middle">
         <td scope="col" style="margin: auto; text-align: center;">
             <a><img src="https://tmdstudios.files.wordpress.com/2021/02/btc48.png"></a>
         </td>
-        <!-- <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.amount }}</a></td> -->
         <td scope="col" style="margin: auto; text-align: center;">
-            <a style="color: snow; font-size: 16px; font-size: 1vw;">3QHJQs1f22HaCoGGxFm6381ibozkM7etuu</a>
+            <a style="font-size: 16px; font-size: 1vw;">3QHJQs1f22HaCoGGxFm6381ibozkM7etuu</a>
         </td>
         <td scope="col" style="margin: auto; text-align: center;">
             <a><img style="border: 8px solid #ddd; background-color:white;" 
@@ -311,9 +279,8 @@
         <td scope="col" style="margin: auto; text-align: center;">
             <a><img class="rounded-circle" src="https://tmdstudios.files.wordpress.com/2021/02/eth48.png"></a>
         </td>
-        <!-- <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.amount }}</a></td> -->
         <td scope="col" style="margin: auto; text-align: center;">
-            <a style="color: snow; font-size: 16px; font-size: 1vw;">0xe46e396E7cDEe659d340087dFa5C24e5D9327e22</a>
+            <a style="font-size: 16px; font-size: 1vw;">0xe46e396E7cDEe659d340087dFa5C24e5D9327e22</a>
         </td>
         <td scope="col" style="margin: auto; text-align: center;">
             <a><img style="border: 8px solid #ddd; background-color:white;" 
@@ -324,9 +291,8 @@
         <td scope="col" style="margin: auto; text-align: center;">
             <a><img src="https://tmdstudios.files.wordpress.com/2021/02/doge48.png"></a>
         </td>
-        <!-- <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.amount }}</a></td> -->
         <td scope="col" style="margin: auto; text-align: center;">
-            <a style="color: snow; font-size: 16px; font-size: 1vw;">DSitciuadURAPxRk43ChBuHXVseW3GB5LJ</a>
+            <a style="font-size: 16px; font-size: 1vw;">DSitciuadURAPxRk43ChBuHXVseW3GB5LJ</a>
         </td>
         <td scope="col" style="margin: auto; text-align: center;">
             <a><img style="border: 8px solid #ddd; background-color:white;" 

@@ -13,9 +13,6 @@
 <hr style="height:1px; margin: auto;">
 <br/>
 
-<!-- {% if message_name %}
-    Thank you {{ message_name }}<br/>Your email has been sent
-{% endif %} -->
 
 {% if user.is_authenticated %}
     <br/>
@@ -32,7 +29,11 @@
     {% else %}
 
         <div style="margin: auto; text-align: center; width: 100%; height: 100%; overflow-x: auto;">
-            <table class="table table-dark table-bordered table-striped">
+            {% if dark_mode %}
+            <table class="table table-dark table-bordered table-striped width: 100%; height: 100%;">
+            {% else %}
+            <table class="table table-bordered table-striped width: 100%; height: 100%;">
+            {% endif %}
                 <th style="margin: auto; text-align: center;">Coin Name</th>
                 <th style="margin: auto; text-align: center;">Amount</th>
                 <th style="margin: auto; text-align: center;">Date Purchased</th>

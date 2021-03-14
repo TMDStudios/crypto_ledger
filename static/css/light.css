@@ -1,0 +1,6 @@
+html,body,span,tbody,tfoot,thead,tr,th,td {
+    background: #d2d2d2; 
+    font-family: 'Lato', helvetica, arial, sans-serif; 
+    font-size: 16px; 
+    color: #222;
+}

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,10 +13,16 @@
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
       crossorigin="anonymous"
     />
+    
+    {% if dark_mode %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/dark.css' %}">
+    {% else %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/light.css' %}">
+    {% endif %}
 
     <title>{% block title %} Base {% endblock %}</title>
   </head>
-  <body style="color: white; background: black;">
+  <body>
     <nav class="navbar navbar-expand navbar-dark bg-dark" style="height: 60px;">
       <div class="container-fluid">
         <ul class="navbar-nav mr-auto" style="padding: 10px;">
@@ -71,7 +78,11 @@
 
     <div style="width: 60%; margin: auto; text-align: center;">
       <a href="https://tmdstudios.wordpress.com/py-learning-companion/">
+      {% if dark_mode %}
       <img style="max-width: 100%;" src="https://tmdstudios.files.wordpress.com/2021/02/plclogolight.png?w=600">
+      {% else %}
+      <img style="max-width: 100%;" src="https://tmdstudios.files.wordpress.com/2020/10/plclogo.png?w=600">
+      {% endif %}
       </a>
     </div>
 

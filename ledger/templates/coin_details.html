@@ -13,10 +13,6 @@
 <hr style="height:1px; margin: auto;">
 <br/>
 
-<!-- {% if message_name %}
-    Thank you {{ message_name }}<br/>Your email has been sent
-{% endif %} -->
-
 {% if user.is_authenticated %}
 
 <iframe src="https://lunarcrush.com/widgets/candlestick?symbol='+{{ symbol }}+'&interval=1 Week&animation=false&theme=dark" 
@@ -24,24 +20,23 @@ id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style
     
     <br/>
     <div style="margin: auto; text-align: center; width: 100%; height: 100%; overflow-x: auto;">
-        <table class="table table-dark table-bordered table-striped" width="100%">
+        {% if dark_mode %}
+        <table class="table table-dark table-bordered table-striped width: 100%; height: 100%;">
+        {% else %}
+        <table class="table table-bordered table-striped width: 100%; height: 100%;">
+        {% endif %}
             <th style="margin: auto; text-align: center; width: 10vw;">Coin Name</th>
-            <!-- <th style="margin: auto; text-align: center;">Amount</th> -->
-            <!-- <th style="margin: auto; text-align: center;">Value</th> -->
             <th style="margin: auto; text-align: center; width: 10vw;">Total Amount</th>
             <th style="margin: auto; text-align: center; width: 10vw;">Total Value</th>
             <th style="margin: auto; text-align: center; width: 10vw;">Purchase Price</th>
             <th style="margin: auto; text-align: center; width: 10vw;">Current Price</th>
             <th style="margin: auto; text-align: center; width: 10vw;">Trend</th>
-            {% comment %} <th style="margin: auto; text-align: center; width: 10vw;">Trade</th> {% endcomment %}
-            <!-- <th style="margin: auto; text-align: center;">Edit</th> -->
             <th style="margin: auto; text-align: center; width: 10vw;">Delete</th>
             {% for coin in coins %}
                 {% if coin.owner == user %}
                     {% if coin.sold %}
                         <tr class="align-middle">
                             <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.name }}</a></td>
-                            <!-- <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.amount }}</a></td> -->
                             
                             {% if coin.gain > 0 %}
                                 <td colspan="5" scope="col" style="color: chartreuse; margin: auto; text-align: center;"><a>
@@ -64,10 +59,6 @@ id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style
                                     {% endif %}
                                 </a></td>
                             {% endif %}
-                            <!-- <td scope="col" style="margin: auto; text-align: center;"><a>
-                                <a class="btn btn-outline-light btn-sm" style="width: 100%; height: 80%;" 
-                                href="{% url 'edit-coin' coin.id %}" role="button">Edit</a>
-                            </a></td> -->
                             <td scope="col" style="margin: auto; text-align: center;"><a>
                                 <a class="btn btn-outline-light btn-sm" style="width: 100%; height: 80%;" 
                                 href="{% url 'delete-coin' coin.id %}" role="button">Delete</a>
@@ -76,7 +67,6 @@ id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style
                     {% elif coin.merged %}
                     <tr class="align-middle">
                         <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.name }}</a></td>
-                        <!-- <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.amount }}</a></td> -->
                         <td colspan="5" scope="col" style="margin: auto; text-align: center;"><a>
                             {% if coin.custom_price %}
                                 Coin Merged | Original Purchase {{ coin.amount }} at ${{ coin.custom_price|floatformat:2 }}
@@ -84,10 +74,6 @@ id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style
                                 Coin Merged | Original Purchase {{ coin.amount }} at ${{ coin.purchase_price|floatformat:2 }}
                             {% endif %}
                         </a></td>
-                        <!-- <td scope="col" style="margin: auto; text-align: center;"><a>
-                            <a class="btn btn-outline-light btn-sm" style="width: 100%; height: 80%;" 
-                            href="{% url 'edit-coin' coin.id %}" role="button">Edit</a>
-                        </a></td> -->
                         <td scope="col" style="margin: auto; text-align: center;"><a>
                             <a class="btn btn-outline-light btn-sm" style="width: 100%; height: 80%;" 
                             href="{% url 'delete-coin' coin.id %}" role="button">Delete</a>
@@ -96,10 +82,6 @@ id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style
                     {% else %}
                         <tr class="align-middle">
                             <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.name }}</a></td>
-                            <!-- <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.amount }}</a></td> -->
-                            <!-- <td scope="col" style="margin: auto; text-align: center;"><a>
-                                ${{ coin.value|floatformat:2 }}
-                            </a></td> -->
                             <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.total_amount }}</a></td>
                             <td scope="col" style="margin: auto; text-align: center;"><a>
                                 ${{ coin.total_value|floatformat:2 }}
@@ -119,27 +101,6 @@ id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style
                                     {{ coin.price_difference|floatformat:2 }} %
                                 </a></td>
                             {% endif %}
-                            {% comment %} <td scope="col" style="margin: auto; width: fit-content;">
-                                <div style="text-align: center;">
-                                    {% if coin.sold %}
-                                        {% if coin.gain > 0 %}
-                                            <a style="color: chartreuse;">Sold at ${{ coin.gain|floatformat:2 }} profit</a>
-                                        {% else %}
-                                            <a style="color: red;">Sold at ${{ coin.gain|floatformat:2 }} loss</a>
-                                        {% endif %}
-                                    {% else %}
-                                        </div>   
-                                        <form action="{% url 'sell-coin' coin.id %}" method='POST' class="FieldWrapper" 
-                                        style="text-align: center; width: 100%; height: 80%;">
-                                            {% csrf_token %}
-                                            {{ form.sell_amount }}<input type="submit" value="Sell"> 
-                                        </form>          
-                                {% endif %}
-                            </td> {% endcomment %}
-                            <!-- <td scope="col" style="margin: auto; text-align: center;"><a>
-                                <a class="btn btn-outline-light btn-sm" style="width: 100%; height: 80%;" 
-                                href="{% url 'edit-coin' coin.id %}" role="button">{{ coin.total_spent }}</a>
-                            </a></td> -->
                             <td scope="col" style="margin: auto; text-align: center;"><a>
                                 <a class="btn btn-outline-secondary btn-sm" style="width: 100%; height: 80%;" 
                                 href="#" role="button">Delete</a>
@@ -148,7 +109,6 @@ id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style
                     {% endif %}
                 {% endif %}
                 
-                <!-- <a>coin info: {{ coin.name }} - {{ coin.total_amount }} - {{ coin.sell_amount }}</a></br> -->
             {% endfor %}
         </table>
     </div>
