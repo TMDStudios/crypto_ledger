@@ -16,24 +16,24 @@
                     {% if selected_ticker_prices|length > 0 %}
                         {% for price in selected_ticker_prices %}
                             {% if price.price_1h > 0 %}
-                                <light style="color: chartreuse; font-size: x-large; padding: 10px">
-                                <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <light id="gain" style="font-size: x-large; padding: 10px">
+                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% else %}
-                                <light style="color: red; font-size: x-large; padding: 10px">
-                                <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <light id="loss" style="font-size: x-large; padding: 10px">
+                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% endif %}
                         {% endfor %}
                     {% else %}
                         {% for price in prices %}
                             {% if price.price_1h > 0 %}
-                                <light style="color: chartreuse; font-size: x-large; padding: 10px">
-                                <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <light id="gain" style="font-size: x-large; padding: 10px">
+                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% else %}
-                                <light style="color: red; font-size: x-large; padding: 10px">
-                                <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <light id="loss" style="font-size: x-large; padding: 10px">
+                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% endif %}
                         {% endfor %}
@@ -87,24 +87,24 @@
                             {{ coin.current_price|floatformat:2 }}
                         </a></td>
                         {% if coin.total_profit > 0 %}
-                            <td scope="col" style="color: chartreuse; margin: auto; text-align: center;"><a>
+                            <td id="gain" scope="col" style="margin: auto; text-align: center;"><a>
                                 ${{ coin.total_profit|floatformat:2 }}
                             </a></td>
                         {% elif coin.total_profit == 0 %}
-                            <td scope="col" style="color: gold; margin: auto; text-align: center;"><a>
+                            <td scope="col" id="broke-even" style="margin: auto; text-align: center;"><a>
                                 ${{ coin.total_profit|floatformat:2 }}
                             </a></td>
                         {% else %}
-                            <td scope="col" style="color: red; margin: auto; text-align: center;"><a>
+                            <td scope="col" id="loss" style="margin: auto; text-align: center;"><a>
                                 ${{ coin.total_profit|floatformat:2 }}
                             </a></td>
                         {% endif %}
                         {% if coin.price_difference > 0 %}
-                            <td scope="col" style="color: chartreuse; margin: auto; text-align: center;"><a>
+                            <td id="gain" scope="col" style="margin: auto; text-align: center;"><a>
                                 {{ coin.price_difference|floatformat:2 }} %
                             </a></td>
                         {% else %}
-                            <td scope="col" style="color: red; margin: auto; text-align: center;"><a>
+                            <td scope="col" id="loss" style="margin: auto; text-align: center;"><a>
                                 {{ coin.price_difference|floatformat:2 }} %
                             </a></td>
                         {% endif %}
@@ -125,15 +125,15 @@
                     <a>Portfolio value: ${{ overall_total|floatformat:2 }} | Portfolio Profit: </a>
                     <a>
                         {% if current_profit > 0 %}
-                            <a style="color: chartreuse;">
+                            <a id="gain">
                                 ${{ current_profit|floatformat:2 }}
                             </a>
                         {% elif current_profit == 0 %}
-                            <a style="color: gold;">
+                            <a id="broke-even">
                                 ${{ current_profit|floatformat:2 }}
                             </a>
                         {% else %}
-                            <a style="color: red;">
+                            <a id="loss">
                                 ${{ current_profit|floatformat:2 }}
                             </a>
                         {% endif %}
@@ -174,17 +174,17 @@
                         </td>
                         
                         {% if coin.gain > 0 %}
-                            <td colspan="6" scope="col" style="color: chartreuse; margin: auto; text-align: center;"><a>
+                            <td colspan="6" scope="col" id="gain" style="margin: auto; text-align: center;"><a>
                                 Sold {{ coin.sell_amount }} at {{ coin.sell_price|floatformat:2 }}
                                 - Profit ${{ coin.gain|floatformat:2 }}
                             </a></td>
                         {% elif coin.gain == 0 %}
-                            <td colspan="6" scope="col" style="color:gold; margin: auto; text-align: center;"><a>
+                            <td colspan="6" scope="col" id="broke-even" style="margin: auto; text-align: center;"><a>
                                 Sold {{ coin.sell_amount }} at {{ coin.sell_price|floatformat:2 }}
                                 - Broke Even
                             </a></td>
                         {% else %}
-                            <td colspan="6" scope="col" style="color: red; margin: auto; text-align: center;"><a>
+                            <td colspan="6" scope="col" id="loss" style="margin: auto; text-align: center;"><a>
                                 Sold {{ coin.sell_amount }} at {{ coin.sell_price|floatformat:2 }}
                                 | Loss: $
                                 {% if coin.gain %}
@@ -223,11 +223,11 @@
         <tr class="align-middle">
             <td colspan="8" scope="col" style="margin: auto; text-align: center;">
                 {% if overall_profit > 0 %}
-                <a style="color: chartreuse;">Total Profit: ${{ overall_profit|floatformat:2 }}</a>
+                <a id="gain">Total Profit: ${{ overall_profit|floatformat:2 }}</a>
                 {% elif overall_profit == 0 %}
-                <a style="color: gold;">Total Profit: ${{ overall_profit|floatformat:2 }}</a>
+                <a id="broke-even">Total Profit: ${{ overall_profit|floatformat:2 }}</a>
                 {% else %}
-                <a style="color: red;">Total Profit: ${{ overall_profit|floatformat:2 }}</a>
+                <a id="loss">Total Profit: ${{ overall_profit|floatformat:2 }}</a>
                 {% endif %}
             </td>
         </tr>

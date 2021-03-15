@@ -1,6 +1,24 @@
 html,body,span,tbody,tfoot,thead,tr,th,td {
-    background: #d2d2d2; 
+    background: #ffffff; 
     font-family: 'Lato', helvetica, arial, sans-serif; 
     font-size: 16px; 
+    color: #222;
+}
+#broke-even {
+    color:goldenrod; 
+}
+#loss {
+    color: red;
+}
+#gain {
+    color: forestgreen;
+}
+#plain-font {
+    color: #222;
+}
+.link-light {
+    color: #222;
+}
+.btn-outline-light {
     color: #222;
 }

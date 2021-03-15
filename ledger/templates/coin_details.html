@@ -39,7 +39,7 @@ id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style
                             <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.name }}</a></td>
                             
                             {% if coin.gain > 0 %}
-                                <td colspan="5" scope="col" style="color: chartreuse; margin: auto; text-align: center;"><a>
+                                <td colspan="5" scope="col" id="gain" style="margin: auto; text-align: center;"><a>
                                     Sold {{ coin.sell_amount }} at {{ coin.sell_price|floatformat:2 }}
                                     - Profit ${{ coin.gain|floatformat:2 }}
                                 </a></td>
@@ -49,7 +49,7 @@ id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style
                                     - Broke Even
                                 </a></td>
                             {% else %}
-                                <td colspan="5" scope="col" style="color: red; margin: auto; text-align: center;"><a>
+                                <td colspan="5" id="loss" scope="col" style="margin: auto; text-align: center;"><a>
                                     Sold {{ coin.sell_amount }} at {{ coin.sell_price|floatformat:2 }}
                                     | Loss: $
                                     {% if coin.gain %}
@@ -93,11 +93,11 @@ id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style
                                 {{ coin.current_price|floatformat:2 }}
                             </a></td>
                             {% if coin.price_difference > 0 %}
-                                <td scope="col" style="color: chartreuse; margin: auto; text-align: center;"><a>
+                                <td scope="col" id="gain" style="margin: auto; text-align: center;"><a>
                                     {{ coin.price_difference|floatformat:2 }} %
                                 </a></td>
                             {% else %}
-                                <td scope="col" style="color: red; margin: auto; text-align: center;"><a>
+                                <td scope="col" id="loss" style="margin: auto; text-align: center;"><a>
                                     {{ coin.price_difference|floatformat:2 }} %
                                 </a></td>
                             {% endif %}

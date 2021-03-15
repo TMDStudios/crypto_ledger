@@ -13,7 +13,6 @@
 <hr style="height:1px; margin: auto;">
 <br/>
 
-
 {% if user.is_authenticated %}
     <br/>
     {% if all_coins == 'all_coins' %}
@@ -58,9 +57,9 @@
                     <td scope="col" style="width: 10vw; margin: auto; text-align: center;"><a>
                         {% if deleted_coin.sold %}
                             {% if deleted_coin.gain > 0 %}
-                                <a style="color: chartreuse;">${{ deleted_coin.gain|floatformat:2 }}</a>
+                                <a id="gain">${{ deleted_coin.gain|floatformat:2 }}</a>
                             {% else %}
-                                <a style="color: red;">${{ deleted_coin.gain|floatformat:2 }}</a>
+                                <a id="loss">${{ deleted_coin.gain|floatformat:2 }}</a>
                             {% endif %}
                         {% else %}
                             <a>--</a>
@@ -73,11 +72,11 @@
                         {{ deleted_coin.current_price|floatformat:2 }}
                     </a></td>
                     {% if deleted_coin.price_difference > 0 %}
-                    <td scope="col" style="color: chartreuse; width: 10vw; margin: auto; text-align: center;"><a>
+                    <td scope="col" id="gain" style="width: 10vw; margin: auto; text-align: center;"><a>
                         {{ deleted_coin.price_difference|floatformat:5 }} %
                     </a></td>
                     {% else %}
-                    <td scope="col" style="color: red; width: 10vw; margin: auto; text-align: center;"><a>
+                    <td scope="col" id="loss" style="width: 10vw; margin: auto; text-align: center;"><a>
                         {{ deleted_coin.price_difference|floatformat:5 }} %
                     </a></td>
                     {% endif %}

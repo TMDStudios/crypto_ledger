@@ -21,24 +21,24 @@
                     {% if selected_ticker_prices|length > 0 %}
                         {% for price in selected_ticker_prices %}
                             {% if price.price_1h > 0 %}
-                                <light style="color: chartreuse; font-size: x-large; padding: 10px">
-                                <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <light id="gain" style="font-size: x-large; padding: 10px">
+                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% else %}
-                                <light style="color: red; font-size: x-large; padding: 10px">
-                                <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <light id="loss" style="font-size: x-large; padding: 10px">
+                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% endif %}
                         {% endfor %}
                     {% else %}
                         {% for price in prices %}
                             {% if price.price_1h > 0 %}
-                                <light style="color: chartreuse; font-size: x-large; padding: 10px">
-                                <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <light id="gain" style="font-size: x-large; padding: 10px">
+                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% else %}
-                                <light style="color: red; font-size: x-large; padding: 10px">
-                                <span style="color: snow; font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <light id="loss" style="font-size: x-large; padding: 10px">
+                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% endif %}
                         {% endfor %}
@@ -52,9 +52,9 @@
 
 <div style="margin: auto; text-align: center; width: 100%; height: 100%; overflow-x: auto;">
     {% if dark_mode %}
-    <table class="table table-dark table-bordered table-striped width: 100%; height: 100%;">
+        <table class="table table-dark table-bordered table-striped width: 100%; height: 100%;">
     {% else %}
-    <table class="table table-bordered table-striped width: 100%; height: 100%;">
+        <table class="table table-bordered table-striped width: 100%; height: 100%;">
     {% endif %}
         <form action='.' method='POST'>{% csrf_token %}
             <th style="margin: auto; text-align: center; width: 10vw;">
@@ -114,17 +114,17 @@
                 <td scope="col" style="margin: auto; text-align: center;"><a>${{ coin.price|floatformat:2 }}</a></td>
                 {% if coin.price_1h > 0 %}
                 <td scope="col" style="margin: auto; text-align: center;">
-                <a style="color: chartreuse;">{{ coin.price_1h|floatformat:2 }}%</a></td>
+                <a id="gain">{{ coin.price_1h|floatformat:2 }}%</a></td>
                 {% else %}
                 <td scope="col" style="margin: auto; text-align: center;">
-                <a style="color: red">{{ coin.price_1h|floatformat:2 }}%</a></td>
+                <a id="loss">{{ coin.price_1h|floatformat:2 }}%</a></td>
                 {% endif %}
                 {% if coin.price_24h > 0 %}
                 <td scope="col" style="margin: auto; text-align: center;">
-                <a style="color: chartreuse;">{{ coin.price_24h|floatformat:2 }}%</a></td>
+                <a id="gain">{{ coin.price_24h|floatformat:2 }}%</a></td>
                 {% else %}
                 <td scope="col" style="margin: auto; text-align: center;">
-                <a style="color: red;">{{ coin.price_24h|floatformat:2 }}%</a></td>
+                <a id="loss">{{ coin.price_24h|floatformat:2 }}%</a></td>
                 {% endif %}
                 <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.price_btc }}</a></td>
                 <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.price_eth }}</a></td>
@@ -133,6 +133,7 @@
     </table>
 </div>
 
-<div style="margin: auto; text-align: center;">Coin prices provided by <a href="https://messari.io/">https://messari.io/</a></div>
+<div style="margin: auto; text-align: center;">Coin prices provided by <a href="https://messari.io/" target="_blank">
+https://messari.io/</a></div>
     
 {% endblock %}

@@ -1,6 +1,24 @@
 html,body,span,tbody,tfoot,thead,tr,th,td {
     background: #000000; 
     font-family: 'Lato', helvetica, arial, sans-serif; 
-    font-size: 16px; color: 
-    rgb(228, 228, 228);
+    font-size: 16px; 
+    color: rgb(228, 228, 228);
+}
+#broke-even {
+    color: gold;
+}
+#loss {
+    color: red;
+}
+#gain {
+    color: chartreuse;
+}
+#plain-font {
+    color: rgb(228, 228, 228);
+}
+.link-light {
+    color: rgb(228, 228, 228);
+}
+.btn-outline-light{
+    color: rgb(228, 228, 228);
 }
