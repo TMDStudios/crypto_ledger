@@ -37,6 +37,9 @@ def home(request):
     context = {}
     form = SellForm()
     limit_history = 0
+    overall_total = 0
+    current_profit = 0
+    overall_profit = 0
     if request.user.is_authenticated:
         owner = get_object_or_404(User, id=request.user.id)
         context['selected_ticker_prices'] = customize_ticker(owner)
@@ -44,12 +47,35 @@ def home(request):
         user_settings = user_settings.filter(user=owner)[0]
         context['dark_mode'] = user_settings.dark_mode
         limit_history = user_settings.limit_history
+        coins = Coin.objects.all().filter(owner=owner)
+        coins = coins.order_by('-id')
+        context['coins'] = coins
+
+        for coin in coins:
+            coin.price_difference = coin.current_price / coin.purchase_price * decimal.Decimal('100') - decimal.Decimal('100')
+            current_price_decimal = decimal.Decimal(str(coin.current_price))
+            coin.value = current_price_decimal * coin.total_amount
+            coin.total_profit = coin.current_price * coin.total_amount - coin.purchase_price * coin.total_amount
+
+            coin.total_value = current_price_decimal * coin.total_amount
+            if not coin.sold and not coin.merged:
+                overall_total += coin.total_value
+                current_profit += coin.total_profit
+            if coin.sold:
+                overall_profit += coin.gain
+
+            coin.save()
+
+        if limit_history > 0:
+            inactive_coins = coins.filter(owner=owner).exclude(date_sold=None)
+            inactive_coins = inactive_coins.order_by('-date_sold')[:user_settings.limit_history]
+        else:
+            inactive_coins = coins.order_by('-date_sold')
+
+        context['inactive_coins'] = inactive_coins
 
     prices = Price.objects.all()
     prices = prices.order_by('name')
-    overall_total = 0
-    current_profit = 0
-    overall_profit = 0
     
     try:
         saved_update = Date.objects.all()[0]
@@ -57,9 +83,6 @@ def home(request):
         saved_update = Date(last_update=datetime.utcnow())
         saved_update.update_round = 0
         saved_update.save()
-
-    coins = Coin.objects.all()
-    coins = coins.order_by('-id')
 
     temp_time = datetime.strptime(str(datetime.utcnow().time()).split('.')[0], '%H:%M:%S')
     last_update = temp_time.second + temp_time.minute * 60 + temp_time.hour * 3600
@@ -83,35 +106,11 @@ def home(request):
 
         context['update_now'] = '> Reload to update prices <'
 
-    context['coins'] = coins
     context['prices'] = prices
-    
-    if limit_history > 0:
-        inactive_coins = coins.order_by('-date_sold')[:user_settings.limit_history]
-    else:
-        inactive_coins = coins.order_by('-date_sold')
-
-    context['inactive_coins'] = inactive_coins
     context['form'] = form
     context['last_update'] = last_update
     context['saved_update'] = saved_update
     context['current_time'] = current_time
-
-    for coin in coins:
-        coin.price_difference = coin.current_price / coin.purchase_price * decimal.Decimal('100') - decimal.Decimal('100')
-        current_price_decimal = decimal.Decimal(str(coin.current_price))
-        coin.value = current_price_decimal * coin.total_amount
-        coin.total_profit = coin.current_price * coin.total_amount - coin.purchase_price * coin.total_amount
-
-        coin.total_value = current_price_decimal * coin.total_amount
-        if request.user.is_authenticated:
-            if coin.owner == owner and not coin.sold and not coin.merged:
-                overall_total += coin.total_value
-                current_profit += coin.total_profit
-            if coin.owner == owner and coin.sold:
-                overall_profit += coin.gain
-        coin.save()
-
     context['overall_total'] = overall_total
     context['current_profit'] = current_profit
     context['overall_profit'] = overall_profit
@@ -396,4 +395,3 @@ def settings(request):
 
 def get_prices(request):
     return redirect('home')
-    
