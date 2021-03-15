@@ -36,12 +36,15 @@ def customize_ticker(owner):
 def home(request):
     context = {}
     form = SellForm()
+    limit_history = 0
     if request.user.is_authenticated:
         owner = get_object_or_404(User, id=request.user.id)
         context['selected_ticker_prices'] = customize_ticker(owner)
         user_settings = Profile.objects.all()
         user_settings = user_settings.filter(user=owner)[0]
         context['dark_mode'] = user_settings.dark_mode
+        limit_history = user_settings.limit_history
+
     prices = Price.objects.all()
     prices = prices.order_by('name')
     overall_total = 0
@@ -57,8 +60,6 @@ def home(request):
 
     coins = Coin.objects.all()
     coins = coins.order_by('-id')
-
-    inactive_coins = coins.order_by('-date_sold')
 
     temp_time = datetime.strptime(str(datetime.utcnow().time()).split('.')[0], '%H:%M:%S')
     last_update = temp_time.second + temp_time.minute * 60 + temp_time.hour * 3600
@@ -85,6 +86,11 @@ def home(request):
     context['coins'] = coins
     context['prices'] = prices
     
+    if limit_history > 0:
+        inactive_coins = coins.order_by('-date_sold')[:user_settings.limit_history]
+    else:
+        inactive_coins = coins.order_by('-date_sold')
+
     context['inactive_coins'] = inactive_coins
     context['form'] = form
     context['last_update'] = last_update
@@ -217,7 +223,8 @@ def sell_coin(request, id):
 
         if not open_order_exists:
             coin.pk = None
-            coin.sold = False                
+            coin.sold = False
+            coin.date_sold = None                
             coin.value = coin.total_amount * coin.current_price
             coin.total_value = coin.total_amount * coin.current_price
             coin.price_difference = coin.current_price / coin.purchase_price * decimal.Decimal('100') - decimal.Decimal('100')
@@ -348,6 +355,7 @@ def settings(request):
             user_settings = Profile.objects.all()
             user_settings = user_settings.filter(user=owner)[0]
             dark_mode = form.cleaned_data['dark_mode']
+            limit_history = form.cleaned_data['limit_history']
 
             if not user_settings:
                 user_settings = Profile(user=owner, ticker_prices="")
@@ -355,6 +363,7 @@ def settings(request):
 
             user_settings.ticker_prices = ""
             user_settings.dark_mode = dark_mode
+            user_settings.limit_history = limit_history
             user_settings.save()
 
             split_prices = ""
@@ -379,11 +388,12 @@ def settings(request):
         user_settings = user_settings.filter(user=owner)[0]
         dark_mode = user_settings.dark_mode
         if dark_mode:
-            form = SettingsForm(initial={'dark_mode': True})
+            form = SettingsForm(initial={'dark_mode': True, 'limit_history': user_settings.limit_history})
         else:
-            form = SettingsForm(initial={'dark_mode': False})
+            form = SettingsForm(initial={'dark_mode': False, 'limit_history': user_settings.limit_history})
 
     return render(request, 'settings.html', {'form': form, 'dark_mode': dark_mode})
 
 def get_prices(request):
     return redirect('home')
+    

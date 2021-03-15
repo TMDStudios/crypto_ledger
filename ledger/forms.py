@@ -50,14 +50,15 @@ coins = [
 class SettingsForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('ticker_prices', 'dark_mode')
+        fields = ('ticker_prices', 'dark_mode', 'limit_history')
         
         widgets = {
             'ticker_prices': forms.CheckboxSelectMultiple(choices=coins),
             'dark_mode': forms.CheckboxInput(attrs={
                 'class': 'form-check-input',
                 'style': 'width: 5vw; height: 24px;'
-                })
+                }),
+            'limit_history': forms.NumberInput(attrs={'class': 'form-control'})
         }
 
 

@@ -108,13 +108,20 @@
             </table>
             <hr style="height:1px; margin: auto;">
             <br/>
+            <div class="row" style="margin: auto; text-align: center; width: 60%;">
+                <div class="col" style="margin: auto; text-align: right;">
+                    Limit number of old transactins displayed:
+                </div>
+                <div class="col" style="margin: auto; text-align: left;">
+                    {{ form.limit_history }}
+                </div>
+            </div>
+            <br/>
+            <hr style="height:1px; margin: auto;">
+            <br/>
             <div style="margin: auto; text-align: center; width: 20vw;">Dark Mode</div>
             <div class="form-switch" style="margin: auto; text-align: center; width: 20vw;">
-                {% if dark_mode %}
-                    {{ form.dark_mode }}
-                {% else %}
-                    {{ form.dark_mode }}
-                {% endif %}
+                {{ form.dark_mode }}
             </div>
             <br/>
             <hr style="height:1px; margin: auto;">
