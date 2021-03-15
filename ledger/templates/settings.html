@@ -20,15 +20,15 @@
     <hr style="height:1px; margin: auto;">
     <br/>
 
-    <div style="width: 100%; height: 30%;">
+    <div style="width: 100%; margin: auto; text-align: center;">
         <form action="." method="POST">
             {% csrf_token %}
             <table class="table table-borderless">
                 <tr>
                     {% for item in form.ticker_prices %}
                         {% if forloop.counter0 < 5 %}
-                            <td style="margin: auto; text-align: center; color: snow;">
-                                <span style="font-size: large;"> {{ item }} </span>
+                            <td style="margin: auto; text-align: center; width: 8%;">
+                                <span id="coin-symbol"> {{ item }} </span>
                             </td>
                         {% endif %}
                     {% endfor %}
@@ -36,8 +36,8 @@
                 <tr>
                     {% for item in form.ticker_prices %}
                         {% if forloop.counter0 > 4 and forloop.counter0 < 10 %}
-                            <td style="margin: auto; text-align: center; color: snow;">
-                                <span style="font-size: large;"> {{ item }} </span>
+                            <td style="margin: auto; text-align: center; width: 8%">
+                                <span id="coin-symbol"> {{ item }} </span>
                             </td>
                         {% endif %}
                     {% endfor %}
@@ -45,8 +45,8 @@
                 <tr>
                     {% for item in form.ticker_prices %}
                         {% if forloop.counter0 > 9 and forloop.counter0 < 15 %}
-                            <td style="margin: auto; text-align: center; color: snow;">
-                                <span style="font-size: large;"> {{ item }} </span>
+                            <td style="margin: auto; text-align: center; width: 8%;">
+                                <span id="coin-symbol"> {{ item }} </span>
                             </td>
                         {% endif %}
                     {% endfor %}
@@ -54,8 +54,8 @@
                 <tr>
                     {% for item in form.ticker_prices %}
                         {% if forloop.counter0 > 14 and forloop.counter0 < 20 %}
-                            <td style="margin: auto; text-align: center; color: snow;">
-                                <span style="font-size: large;"> {{ item }} </span>
+                            <td style="margin: auto; text-align: center; width: 8%;">
+                                <span id="coin-symbol"> {{ item }} </span>
                             </td>
                         {% endif %}
                     {% endfor %}
@@ -63,8 +63,8 @@
                 <tr>
                     {% for item in form.ticker_prices %}
                         {% if forloop.counter0 > 19 and forloop.counter0 < 25 %}
-                            <td style="margin: auto; text-align: center; color: snow;">
-                                <span style="font-size: large;"> {{ item }} </span>
+                            <td style="margin: auto; text-align: center; width: 8%;">
+                                <span id="coin-symbol"> {{ item }} </span>
                             </td>
                         {% endif %}
                     {% endfor %}
@@ -72,8 +72,8 @@
                 <tr>
                     {% for item in form.ticker_prices %}
                         {% if forloop.counter0 > 24 and forloop.counter0 < 30 %}
-                            <td style="margin: auto; text-align: center; color: snow;">
-                                <span style="font-size: large;"> {{ item }} </span>
+                            <td style="margin: auto; text-align: center; width: 8%;">
+                                <span id="coin-symbol"> {{ item }} </span>
                             </td>
                         {% endif %}
                     {% endfor %}
@@ -81,8 +81,8 @@
                 <tr>
                     {% for item in form.ticker_prices %}
                         {% if forloop.counter0 > 29 and forloop.counter0 < 35 %}
-                            <td style="margin: auto; text-align: center; color: snow;">
-                                <span style="font-size: large;"> {{ item }} </span>
+                            <td style="margin: auto; text-align: center; width: 8%;">
+                                <span id="coin-symbol"> {{ item }} </span>
                             </td>
                         {% endif %}
                     {% endfor %}
@@ -90,8 +90,8 @@
                 <tr>
                     {% for item in form.ticker_prices %}
                         {% if forloop.counter0 > 34 and forloop.counter0 < 40 %}
-                            <td style="margin: auto; text-align: center; color: snow;">
-                                <span style="font-size: large;"> {{ item }} </span>
+                            <td style="margin: auto; text-align: center; width: 8%;">
+                                <span id="coin-symbol"> {{ item }} </span>
                             </td>
                         {% endif %}
                     {% endfor %}
@@ -99,8 +99,8 @@
                 <tr>
                     {% for item in form.ticker_prices %}
                         {% if forloop.counter0 > 39 and forloop.counter0 < 45 %}
-                            <td style="margin: auto; text-align: center; color: snow;">
-                                <span style="font-size: large;"> {{ item }} </span>
+                            <td style="margin: auto; text-align: center; width: 8%;">
+                                <span id="coin-symbol"> {{ item }} </span>
                             </td>
                         {% endif %}
                     {% endfor %}

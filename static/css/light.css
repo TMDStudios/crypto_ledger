@@ -16,6 +16,10 @@ html,body,span,tbody,tfoot,thead,tr,th,td {
 #plain-font {
     color: #222;
 }
+#coin-symbol {
+    font-size: 20px; 
+    font-family: monospace, monospace;
+}
 .link-light {
     color: #222;
 }
