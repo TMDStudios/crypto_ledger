@@ -68,7 +68,7 @@ class CoinForm(forms.ModelForm):
         fields = ('name', 'amount', 'custom_price')
         
         widgets = {
-            'name': forms.Select(choices=coins, attrs={'class': 'form-control'}),
+            'name': forms.Select(choices=coin_names, attrs={'class': 'form-control'}),
             'amount': forms.TextInput(attrs={'class': 'form-control', 'autocomplete': 'off'}),
             'custom_price': forms.TextInput(attrs={'class': 'form-control', 'autocomplete': 'off', 'placeholder': 'Leave Blank To Use Current Price'}),
         }

@@ -17,11 +17,11 @@
                         {% for price in selected_ticker_prices %}
                             {% if price.price_1h > 0 %}
                                 <light id="gain" style="font-size: x-large; padding: 10px">
-                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <span id="plain-font">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% else %}
                                 <light id="loss" style="font-size: x-large; padding: 10px">
-                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <span id="plain-font">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% endif %}
                         {% endfor %}
@@ -29,11 +29,11 @@
                         {% for price in prices %}
                             {% if price.price_1h > 0 %}
                                 <light id="gain" style="font-size: x-large; padding: 10px">
-                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <span id="plain-font">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% else %}
                                 <light id="loss" style="font-size: x-large; padding: 10px">
-                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <span id="plain-font">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% endif %}
                         {% endfor %}
@@ -62,14 +62,14 @@
         {% else %}
             <table class="table table-bordered table-striped width: 100%; height: 100%;">
         {% endif %}
-            <th style="margin: auto; text-align: center; width: 10vw;">Coin Name</th>
-            <th style="margin: auto; text-align: center; width: 10vw;">Total Amount</th>
-            <th style="margin: auto; text-align: center; width: 10vw;">Total Value</th>
-            <th style="margin: auto; text-align: center; width: 10vw;">Purchase Price</th>
-            <th style="margin: auto; text-align: center; width: 10vw;">Current Price</th>
-            <th style="margin: auto; text-align: center; width: 10vw;">Profit</th>
-            <th style="margin: auto; text-align: center; width: 10vw;">Trend</th>
-            <th style="margin: auto; text-align: center; width: 20vw;">Trade</th>
+            <th id="active-coin-table-head">Coin Name</th>
+            <th id="active-coin-table-head">Total Amount</th>
+            <th id="active-coin-table-head">Total Value</th>
+            <th id="active-coin-table-head">Purchase Price</th>
+            <th id="active-coin-table-head">Current Price</th>
+            <th id="active-coin-table-head">Profit</th>
+            <th id="active-coin-table-head">Trend</th>
+            <th id="active-coin-table-head" style="width: 20vw;">Trade</th>
             {% for coin in coins %}
                 {% if coin.owner == user and not coin.sold and not coin.merged %}
                     <tr class="align-middle">
@@ -159,9 +159,9 @@
     {% else %}
         <table class="table table-bordered table-striped" style="width: 100%; height: 100%; overflow-x: auto;">
     {% endif %}
-        <th style="margin: auto; text-align: center; width: 12vw;">Coin Name</th>
-        <th colspan="6" style="margin: auto; text-align: center; width: 46vw;">Status</th>
-        <th style="margin: auto; text-align: center; width: 12vw;">
+        <th id="center-content" style="width: 12vw;">Coin Name</th>
+        <th colspan="6" id="center-content" style="width: 46vw;">Status</th>
+        <th id="center-content" style="width: 12vw;">
             <a class="btn btn-outline-light btn-sm" style="width: 100%; height: 80%;" 
                         href="{% url 'delete-coin' 0 %}" role="button">Delete All</a>
         </th>
@@ -254,47 +254,47 @@
 
 <table class="table table-borderless table-striped" style="width: 60%; height: 100%; margin: auto; text-align: center;">
     <tr class="align-middle">
-        <td colspan="3" scope="col" style="margin: auto; text-align: center;">
+        <td colspan="3" scope="col" id="center-content">
             <a style="font-size: medium;">Please consider supporting Crypto Ledger with a small donation</a>
         </td>
     </tr>
     <tr class="align-middle">
-        <td colspan="3" scope="col" style="margin: auto; text-align: center;">
+        <td colspan="3" scope="col" id="center-content"">
             <h4>  -  -  -  </h4>
         </td>
     </tr>
     <tr class="align-middle">
-        <td scope="col" style="margin: auto; text-align: center;">
+        <td scope="col" id="center-content"">
             <a><img src="https://tmdstudios.files.wordpress.com/2021/02/btc48.png"></a>
         </td>
-        <td scope="col" style="margin: auto; text-align: center;">
+        <td scope="col" id="center-content">
             <a style="font-size: 16px; font-size: 1vw;">3QHJQs1f22HaCoGGxFm6381ibozkM7etuu</a>
         </td>
-        <td scope="col" style="margin: auto; text-align: center;">
+        <td scope="col" id="center-content">
             <a><img style="border: 8px solid #ddd; background-color:white;" 
                 src="https://tmdstudios.files.wordpress.com/2021/02/btc.png"></a>
         </td>
     </tr>
     <tr class="align-middle">
-        <td scope="col" style="margin: auto; text-align: center;">
+        <td scope="col" id="center-content">
             <a><img class="rounded-circle" src="https://tmdstudios.files.wordpress.com/2021/02/eth48.png"></a>
         </td>
-        <td scope="col" style="margin: auto; text-align: center;">
+        <td scope="col" id="center-content">
             <a style="font-size: 16px; font-size: 1vw;">0xe46e396E7cDEe659d340087dFa5C24e5D9327e22</a>
         </td>
-        <td scope="col" style="margin: auto; text-align: center;">
+        <td scope="col" id="center-content">
             <a><img style="border: 8px solid #ddd; background-color:white;" 
                 src="https://tmdstudios.files.wordpress.com/2021/02/eth.png"></a>
         </td>
     </tr>
     <tr class="align-middle">
-        <td scope="col" style="margin: auto; text-align: center;">
+        <td scope="col" id="center-content">
             <a><img src="https://tmdstudios.files.wordpress.com/2021/02/doge48.png"></a>
         </td>
-        <td scope="col" style="margin: auto; text-align: center;">
+        <td scope="col" id="center-content">
             <a style="font-size: 16px; font-size: 1vw;">DSitciuadURAPxRk43ChBuHXVseW3GB5LJ</a>
         </td>
-        <td scope="col" style="margin: auto; text-align: center;">
+        <td scope="col" id="center-content">
             <a><img style="border: 8px solid #ddd; background-color:white;" 
                 src="https://tmdstudios.files.wordpress.com/2021/02/doge.png"></a>
         </td>

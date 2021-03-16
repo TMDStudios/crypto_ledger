@@ -22,11 +22,11 @@
                         {% for price in selected_ticker_prices %}
                             {% if price.price_1h > 0 %}
                                 <light id="gain" style="font-size: x-large; padding: 10px">
-                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <span id="plain-font">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% else %}
                                 <light id="loss" style="font-size: x-large; padding: 10px">
-                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <span id="plain-font">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% endif %}
                         {% endfor %}
@@ -34,11 +34,11 @@
                         {% for price in prices %}
                             {% if price.price_1h > 0 %}
                                 <light id="gain" style="font-size: x-large; padding: 10px">
-                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <span id="plain-font">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% else %}
                                 <light id="loss" style="font-size: x-large; padding: 10px">
-                                <span id="plain-font" style="font-size: x-large; padding-right: 5px">{{ price.symbol }}</span>
+                                <span id="plain-font">{{ price.symbol }}</span>
                                 ${{ price.price|floatformat:2 }}</light>
                             {% endif %}
                         {% endfor %}
@@ -57,49 +57,49 @@
         <table class="table table-bordered table-striped width: 100%; height: 100%;">
     {% endif %}
         <form action='.' method='POST'>{% csrf_token %}
-            <th style="margin: auto; text-align: center; width: 10vw;">
+            <th id="all-prices-table-head">
                 <select name="coin_name" class="btn btn-outline-light dropdown-toggle" 
-                style="width: 10vw; margin: auto; font-size: large" onChange='form.submit()'>
+                id="all-prices-table-head-contents" onChange='form.submit()'>
                     <option selected='selected' disabled>Coin Name</option>
                     <option value="Desc">Desc</option>
                     <option value="Asc">Asc</option>
                 </select>
             </th>
-            <th style="margin: auto; text-align: center; width: 10vw;">
+            <th id="all-prices-table-head">
                 <select name="price_usd" class="btn btn-outline-light dropdown-toggle" 
-                style="width: 10vw; margin: auto; font-size: large" onChange='form.submit()'>
+                id="all-prices-table-head-contents" onChange='form.submit()'>
                     <option selected='selected' disabled>Price in USD</option>
                     <option value="Desc">Desc</option>
                     <option value="Asc">Asc</option>
                 </select>
             </th>
-            <th style="margin: auto; text-align: center; width: 10vw;">
+            <th id="all-prices-table-head">
                 <select name="price_1h" class="btn btn-outline-light dropdown-toggle" 
-                style="width: 10vw; margin: auto; font-size: large" onChange='form.submit()'>
+                id="all-prices-table-head-contents" onChange='form.submit()'>
                     <option selected='selected' disabled>Price change 1h</option>
                     <option value="Desc">Desc</option>
                     <option value="Asc">Asc</option>
                 </select>
             </th>
-            <th style="margin: auto; text-align: center; width: 10vw;">
+            <th id="all-prices-table-head">
                 <select name="price_24h" class="btn btn-outline-light dropdown-toggle" 
-                style="width: 10vw; margin: auto; font-size: large" onChange='form.submit()'>
+                id="all-prices-table-head-contents" onChange='form.submit()'>
                     <option selected='selected' disabled>Price change 24h</option>
                     <option value="Desc">Desc</option>
                     <option value="Asc">Asc</option>
                 </select>
             </th>
-            <th style="margin: auto; text-align: center; width: 10vw;">
+            <th id="all-prices-table-head">
                 <select name="price_btc" class="btn btn-outline-light dropdown-toggle" 
-                style="width: 10vw; margin: auto; font-size: large" onChange='form.submit()'>
+                id="all-prices-table-head-contents" onChange='form.submit()'>
                     <option selected='selected' disabled>Price in BTC</option>
                     <option value="Desc">Desc</option>
                     <option value="Asc">Asc</option>
                 </select>
             </th>
-            <th style="margin: auto; text-align: center; width: 10vw;">
+            <th id="all-prices-table-head">
                 <select name="price_eth" class="btn btn-outline-light dropdown-toggle" 
-                style="width: 10vw; margin: auto; font-size: large" onChange='form.submit()'>
+                id="all-prices-table-head-contents" onChange='form.submit()'>
                     <option selected='selected' disabled>Price in ETH</option>
                     <option value="Desc">Desc</option>
                     <option value="Asc">Asc</option>

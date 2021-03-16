@@ -1,3 +1,6 @@
+* {
+    margin: 0;
+}
 html,body,span,tbody,tfoot,thead,tr,th,td {
     background: #ffffff; 
     font-family: 'Lato', helvetica, arial, sans-serif; 
@@ -15,10 +18,31 @@ html,body,span,tbody,tfoot,thead,tr,th,td {
 }
 #plain-font {
     color: #222;
+    font-size: x-large; 
+    padding-right: 5px;
 }
 #coin-symbol {
     font-size: 20px; 
     font-family: monospace, monospace;
+}
+#active-coin-table-head {
+    margin: auto; 
+    text-align: center; 
+    width: 10vw;
+}
+#all-prices-table-head {
+    margin: auto; 
+    text-align: center; 
+    width: 10vw;
+}
+#all-prices-table-head-contents {
+    width: 10vw; 
+    margin: auto; 
+    font-size: large
+}
+#center-content {
+    margin: auto; 
+    text-align: center;
 }
 .link-light {
     color: #222;

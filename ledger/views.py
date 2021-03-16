@@ -111,6 +111,7 @@ def home(request):
     context['last_update'] = last_update
     context['saved_update'] = saved_update
     context['current_time'] = current_time
+
     context['overall_total'] = overall_total
     context['current_profit'] = current_profit
     context['overall_profit'] = overall_profit
@@ -246,7 +247,6 @@ def delete_coin(request, id):
             return redirect('home')
         context = {
             'all_coins': 'all_coins',
-            'selected_ticker_prices': customize_ticker(owner),
             'dark_mode': user_settings.dark_mode
         }
     else:
@@ -298,6 +298,10 @@ def all_prices(request):
         context['dark_mode'] = user_settings.dark_mode
     coins = Price.objects.all()
     coins = coins.order_by('name') 
+
+    prices = Price.objects.all()
+    prices = prices.order_by('name')
+    context['prices'] = prices
 
     if request.method == "POST":
         coin_name = request.POST.get('coin_name')
