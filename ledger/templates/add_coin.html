@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block title %}
-    Add Coin
+    ${{ bitcoin_price|floatformat:2|intcomma }} - Add Coin
 {% endblock %}
 
 {% block content %}
@@ -39,15 +41,6 @@
     </div>
 
     </br>
-
-    {% comment %} The Problem: {{ issue }} - {{ usr }} {{ coins }} {% endcomment %}
-
-    
-
-    {% comment %} <script>
-        var name = "{{ user.id }}";
-        document.getElementById("author_name").value = name;
-    </script> {% endcomment %}
 
 {% else %}
     <div style="margin: auto; text-align: center;">Log in to continue</div>

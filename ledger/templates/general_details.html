@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block title %}
-    {{ name }} Details
+    ${{ bitcoin_price|floatformat:2|intcomma }} - {{ name }} Details
 {% endblock %}
 
 {% block content %}

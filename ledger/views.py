@@ -76,7 +76,7 @@ def home(request):
 
     prices = Price.objects.all()
     prices = prices.order_by('name')
-    
+
     try:
         saved_update = Date.objects.all()[0]
     except IndexError:

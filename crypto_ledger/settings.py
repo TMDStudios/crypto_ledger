@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'users',
     'django_celery_results',
-    'crispy_forms'
+    'crispy_forms',
+    'django.contrib.humanize'
 ]
 
 REST_FRAMEWORK = {

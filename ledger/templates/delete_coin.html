@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block title %}
-    Delete Transaction
+    ${{ bitcoin_price|floatformat:2|intcomma }} - Delete Transaction
 {% endblock %}
 
 
@@ -57,19 +59,19 @@
                     <td scope="col" style="width: 10vw; margin: auto; text-align: center;"><a>
                         {% if deleted_coin.sold %}
                             {% if deleted_coin.gain > 0 %}
-                                <a id="gain">${{ deleted_coin.gain|floatformat:2 }}</a>
+                                <a id="gain">${{ deleted_coin.gain|floatformat:2|intcomma }}</a>
                             {% else %}
-                                <a id="loss">${{ deleted_coin.gain|floatformat:2 }}</a>
+                                <a id="loss">${{ deleted_coin.gain|floatformat:2|intcomma }}</a>
                             {% endif %}
                         {% else %}
                             <a>--</a>
                         {% endif %}
                     </a></td>
                     <td scope="col" style="width: 10vw; margin: auto; text-align: center;"><a>
-                        {{ deleted_coin.custom_price|floatformat:2 }}
+                        {{ deleted_coin.custom_price|floatformat:2|intcomma }}
                     </a></td>
                     <td scope="col" style="width: 10vw; margin: auto; text-align: center;"><a>
-                        {{ deleted_coin.current_price|floatformat:2 }}
+                        {{ deleted_coin.current_price|floatformat:2|intcomma }}
                     </a></td>
                     {% if deleted_coin.price_difference > 0 %}
                     <td scope="col" id="gain" style="width: 10vw; margin: auto; text-align: center;"><a>

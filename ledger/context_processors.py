@@ -1,4 +1,4 @@
-from .models import Profile
+from .models import Profile, Price
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
@@ -16,4 +16,9 @@ def extras(request):
     else:
         dark_mode = True
 
-    return{'dark_mode': dark_mode}
+    prices = Price.objects.all()
+    prices = prices.order_by('name')
+
+    bitcoin_price = prices.filter(symbol='BTC')[0].price
+
+    return{'dark_mode': dark_mode, 'bitcoin_price': bitcoin_price}

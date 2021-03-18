@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block title %}
-    Coin Details
+    ${{ bitcoin_price|floatformat:2|intcomma }} - Coin Details
 {% endblock %}
 
 
@@ -40,20 +42,20 @@ id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style
                             
                             {% if coin.gain > 0 %}
                                 <td colspan="5" scope="col" id="gain" style="margin: auto; text-align: center;"><a>
-                                    Sold {{ coin.sell_amount }} at {{ coin.sell_price|floatformat:2 }}
-                                    - Profit ${{ coin.gain|floatformat:2 }}
+                                    Sold {{ coin.sell_amount }} at {{ coin.sell_price|floatformat:2|intcomma }}
+                                    - Profit ${{ coin.gain|floatformat:2|intcomma }}
                                 </a></td>
                             {% elif coin.gain == 0 %}
                                 <td colspan="5" scope="col" style="color:gold; margin: auto; text-align: center;"><a>
-                                    Sold {{ coin.sell_amount }} at {{ coin.sell_price|floatformat:2 }}
+                                    Sold {{ coin.sell_amount }} at {{ coin.sell_price|floatformat:2|intcomma }}
                                     - Broke Even
                                 </a></td>
                             {% else %}
                                 <td colspan="5" id="loss" scope="col" style="margin: auto; text-align: center;"><a>
-                                    Sold {{ coin.sell_amount }} at {{ coin.sell_price|floatformat:2 }}
+                                    Sold {{ coin.sell_amount }} at {{ coin.sell_price|floatformat:2|intcomma }}
                                     | Loss: $
                                     {% if coin.gain %}
-                                        {{ coin.gain|floatformat:2 }}
+                                        {{ coin.gain|floatformat:2|intcomma }}
                                     {% else %}
                                         0
                                     {% endif %}
@@ -69,9 +71,11 @@ id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style
                         <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.name }}</a></td>
                         <td colspan="5" scope="col" style="margin: auto; text-align: center;"><a>
                             {% if coin.custom_price %}
-                                Coin Merged | Original Purchase {{ coin.amount }} at ${{ coin.custom_price|floatformat:2 }}
+                                Coin Merged | Original Purchase {{ coin.amount }} 
+                                at ${{ coin.custom_price|floatformat:2|intcomma }}
                             {% else %}
-                                Coin Merged | Original Purchase {{ coin.amount }} at ${{ coin.purchase_price|floatformat:2 }}
+                                Coin Merged | Original Purchase {{ coin.amount }} 
+                                at ${{ coin.purchase_price|floatformat:2|intcomma }}
                             {% endif %}
                         </a></td>
                         <td scope="col" style="margin: auto; text-align: center;"><a>
@@ -84,21 +88,21 @@ id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style
                             <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.name }}</a></td>
                             <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.total_amount }}</a></td>
                             <td scope="col" style="margin: auto; text-align: center;"><a>
-                                ${{ coin.total_value|floatformat:2 }}
+                                ${{ coin.total_value|floatformat:2|intcomma }}
                             </a></td>
                             <td scope="col" style="margin: auto; text-align: center;"><a>
-                                {{ coin.purchase_price|floatformat:2 }}
+                                {{ coin.purchase_price|floatformat:2|intcomma }}
                             </a></td>
                             <td scope="col" style="margin: auto; text-align: center;"><a>
-                                {{ coin.current_price|floatformat:2 }}
+                                {{ coin.current_price|floatformat:2|intcomma }}
                             </a></td>
                             {% if coin.price_difference > 0 %}
                                 <td scope="col" id="gain" style="margin: auto; text-align: center;"><a>
-                                    {{ coin.price_difference|floatformat:2 }} %
+                                    {{ coin.price_difference|floatformat:2|intcomma }} %
                                 </a></td>
                             {% else %}
                                 <td scope="col" id="loss" style="margin: auto; text-align: center;"><a>
-                                    {{ coin.price_difference|floatformat:2 }} %
+                                    {{ coin.price_difference|floatformat:2|intcomma }} %
                                 </a></td>
                             {% endif %}
                             <td scope="col" style="margin: auto; text-align: center;"><a>

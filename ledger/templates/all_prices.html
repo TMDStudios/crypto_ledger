@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block title %}
-    All Prices
+    ${{ bitcoin_price|floatformat:2|intcomma }} - All Prices
 {% endblock %}
 
 
@@ -23,11 +25,11 @@
                             {% if price.price_1h > 0 %}
                                 <light id="gain" style="font-size: x-large; padding: 10px">
                                 <span id="plain-font">{{ price.symbol }}</span>
-                                ${{ price.price|floatformat:2 }}</light>
+                                ${{ price.price|floatformat:2|intcomma }}</light>
                             {% else %}
                                 <light id="loss" style="font-size: x-large; padding: 10px">
                                 <span id="plain-font">{{ price.symbol }}</span>
-                                ${{ price.price|floatformat:2 }}</light>
+                                ${{ price.price|floatformat:2|intcomma }}</light>
                             {% endif %}
                         {% endfor %}
                     {% else %}
@@ -35,11 +37,11 @@
                             {% if price.price_1h > 0 %}
                                 <light id="gain" style="font-size: x-large; padding: 10px">
                                 <span id="plain-font">{{ price.symbol }}</span>
-                                ${{ price.price|floatformat:2 }}</light>
+                                ${{ price.price|floatformat:2|intcomma }}</light>
                             {% else %}
                                 <light id="loss" style="font-size: x-large; padding: 10px">
                                 <span id="plain-font">{{ price.symbol }}</span>
-                                ${{ price.price|floatformat:2 }}</light>
+                                ${{ price.price|floatformat:2|intcomma }}</light>
                             {% endif %}
                         {% endfor %}
                     {% endif %}
@@ -111,20 +113,20 @@
                 <td scope="col" style="margin: auto; text-align: center;"><a style="text-decoration: none;"
                     class="link-light" href="{% url 'general-details' coin.id %}">{{ coin.name }}</a>
                 </td>
-                <td scope="col" style="margin: auto; text-align: center;"><a>${{ coin.price|floatformat:2 }}</a></td>
+                <td scope="col" style="margin: auto; text-align: center;"><a>${{ coin.price|floatformat:2|intcomma }}</a></td>
                 {% if coin.price_1h > 0 %}
                 <td scope="col" style="margin: auto; text-align: center;">
-                <a id="gain">{{ coin.price_1h|floatformat:2 }}%</a></td>
+                <a id="gain">{{ coin.price_1h|floatformat:2|intcomma }}%</a></td>
                 {% else %}
                 <td scope="col" style="margin: auto; text-align: center;">
-                <a id="loss">{{ coin.price_1h|floatformat:2 }}%</a></td>
+                <a id="loss">{{ coin.price_1h|floatformat:2|intcomma }}%</a></td>
                 {% endif %}
                 {% if coin.price_24h > 0 %}
                 <td scope="col" style="margin: auto; text-align: center;">
-                <a id="gain">{{ coin.price_24h|floatformat:2 }}%</a></td>
+                <a id="gain">{{ coin.price_24h|floatformat:2|intcomma }}%</a></td>
                 {% else %}
                 <td scope="col" style="margin: auto; text-align: center;">
-                <a id="loss">{{ coin.price_24h|floatformat:2 }}%</a></td>
+                <a id="loss">{{ coin.price_24h|floatformat:2|intcomma }}%</a></td>
                 {% endif %}
                 <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.price_btc }}</a></td>
                 <td scope="col" style="margin: auto; text-align: center;"><a>{{ coin.price_eth }}</a></td>
