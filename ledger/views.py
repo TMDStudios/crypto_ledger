@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 import requests, decimal
 from .models import Coin, Date, Price, Profile
 from .forms import CoinForm, EditCoinForm, SellForm, SettingsForm
@@ -9,6 +9,7 @@ from datetime import datetime
 from django.forms.models import model_to_dict
 from django.contrib.auth.models import User
 from .tasks import update_prices
+from .serializers import PriceSerializer
 
 import schedule
 import time
@@ -398,4 +399,6 @@ def settings(request):
     return render(request, 'settings.html', {'form': form, 'dark_mode': dark_mode})
 
 def get_prices(request):
-    return redirect('home')
+    coins = Price.objects.all()
+    serializer = PriceSerializer(coins, many=True)
+    return JsonResponse(serializer.data, safe=False)
