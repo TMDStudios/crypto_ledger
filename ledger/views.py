@@ -1,14 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 import requests, decimal
-from .models import Coin, Date, Price, Profile
+from .models import Coin, Price, Profile
 from .forms import CoinForm, EditCoinForm, SellForm, SettingsForm
 from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 from datetime import datetime
 from django.forms.models import model_to_dict
 from django.contrib.auth.models import User
-from .tasks import update_prices
 from .serializers import PriceSerializer
 
 import schedule
@@ -78,41 +77,8 @@ def home(request):
     prices = Price.objects.all()
     prices = prices.order_by('name')
 
-    try:
-        saved_update = Date.objects.all()[0]
-    except IndexError:
-        saved_update = Date(last_update=datetime.utcnow())
-        saved_update.update_round = 0
-        saved_update.save()
-
-    temp_time = datetime.strptime(str(datetime.utcnow().time()).split('.')[0], '%H:%M:%S')
-    last_update = temp_time.second + temp_time.minute * 60 + temp_time.hour * 3600
-
-    try:
-        temp_saved_time = datetime.strptime(str(saved_update).split(' ')[1].split('+')[0], '%H:%M:%S')
-    except ValueError:
-        temp_saved_time = datetime.strptime(str(saved_update).split(' ')[1].split('.')[0], '%H:%M:%S')
-    current_time = temp_saved_time.second + temp_saved_time.minute * 60 + temp_saved_time.hour * 3600
-
-    update_timer = last_update - current_time
-    if update_timer > 60 or update_timer < -60:
-        update_round = saved_update.update_round
-        if update_round > 1:
-            saved_update.update_round = 0
-        else:
-            saved_update.update_round += 1
-        update_prices.delay(update_round)
-        saved_update.last_update = datetime.utcnow()
-        saved_update.save()
-
-        context['update_now'] = '> Reload to update prices <'
-
     context['prices'] = prices
     context['form'] = form
-    context['last_update'] = last_update
-    context['saved_update'] = saved_update
-    context['current_time'] = current_time
-
     context['overall_total'] = overall_total
     context['current_profit'] = current_profit
     context['overall_profit'] = overall_profit
