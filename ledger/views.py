@@ -370,7 +370,10 @@ def get_prices(request):
     return JsonResponse(serializer.data, safe=False)
 
 def get_user_ledger(request):
-    owner = get_object_or_404(User, id=request.user.id)
-    coins = Coin.objects.filter(owner=owner, sold=False, merged=False)
-    serializer = CoinSerializer(coins, many=True)
-    return JsonResponse(serializer.data, safe=False)
+    if request.user.is_authenticated:
+        owner = get_object_or_404(User, id=request.user.id)
+        coins = Coin.objects.filter(owner=owner, sold=False, merged=False)
+        serializer = CoinSerializer(coins, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    else:
+        return JsonResponse({}, safe=False)
