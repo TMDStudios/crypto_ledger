@@ -10,6 +10,7 @@ urlpatterns = [
     path('general-details/<int:id>/', views.general_details, name='general-details'),
     path('edit-coin/<slug:pk>/', views.EditCoinView.as_view(), name='edit-coin'),
     path('api/get-prices/', views.get_prices, name='get-prices'),
+    path('api/get-user-ledger/', views.get_user_ledger, name='get-user-ledger'),
     path('all-prices/', views.all_prices, name='all-prices'),
     path('settings/', views.settings, name='settings'),
 ]

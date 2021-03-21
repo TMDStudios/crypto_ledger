@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from datetime import datetime
 from django.forms.models import model_to_dict
 from django.contrib.auth.models import User
-from .serializers import PriceSerializer
+from .serializers import PriceSerializer, CoinSerializer
 
 import schedule
 import time
@@ -367,4 +367,10 @@ def settings(request):
 def get_prices(request):
     coins = Price.objects.all()
     serializer = PriceSerializer(coins, many=True)
+    return JsonResponse(serializer.data, safe=False)
+
+def get_user_ledger(request):
+    owner = get_object_or_404(User, id=request.user.id)
+    coins = Coin.objects.filter(owner=owner, sold=False, merged=False)
+    serializer = CoinSerializer(coins, many=True)
     return JsonResponse(serializer.data, safe=False)
