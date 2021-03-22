@@ -14,7 +14,9 @@
 <hr style="height:1px; margin: auto;">
 <br/>
 
-<iframe src="https://lunarcrush.com/widgets/candlestick?symbol='+{{ symbol }}+'&interval=1 Week&animation=false&theme=dark" 
-id="candlestick" frameBorder="0" border="0" cellspacing="0" scrolling="no" style="width: 100%; height: 450px;"></iframe>
+<div align='center'>
+    <div class="nomics-ticker-widget" data-name={{ name }} data-base={{ symbol }} data-quote="USD"></div>
+    <script src="https://widget.nomics.com/embed.js"></script>
+</div>
   
 {% endblock %}

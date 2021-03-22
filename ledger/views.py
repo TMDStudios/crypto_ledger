@@ -240,6 +240,7 @@ def coin_details(request, id):
     context['coins'] = coins
     context['form'] = form
     context['symbol'] = symbol
+    context['name'] = name.split(" ")[0]
 
     user_settings = Profile.objects.all()
     user_settings = user_settings.filter(user=owner)[0]
@@ -252,6 +253,7 @@ def general_details(request, id):
     symbol = coin.symbol
     context = {}
     context['symbol'] = symbol
+    context['name'] = coin.name.split(" ")[0]
 
     return render(request, 'general_details.html', context)
 
