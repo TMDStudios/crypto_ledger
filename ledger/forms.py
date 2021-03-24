@@ -39,12 +39,12 @@ coins = [
         ('Cosmos (ATOM)', 'ATOM'),
         ('Augur (REP)', 'REP'),
         ('Basic Attention Token (BAT)', 'BAT'),
-        ('Siacoin (SC)', 'SC'),
+        ('The Graph (GRT)', 'GRT'),
         ('Kava (KAVA)', 'KAVA'),
         ('Chainlink (LINK)', 'LINK'),
         ('Waves (WAVES)', 'WAVES'),
         ('Storj (STORJ)', 'STORJ'),
-        ('The Graph (GRT)', 'GRT')
+        ('Siacoin (SC)', 'SC')
     ]
 
 
