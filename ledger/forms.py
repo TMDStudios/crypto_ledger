@@ -75,21 +75,6 @@ class CoinForm(forms.ModelForm):
         }
 
 
-class EditCoinForm(forms.ModelForm):
-    class Meta:
-        model = Coin
-        fields = ('date_bought', 'date_sold', 'amount', 'total_amount', 'gain', '_purchase_price', 'sold')
-        
-        widgets = {
-            'date_bought': forms.DateInput(format='%d/%m/%Y', attrs={'class': 'form-control'}),
-            'date_sold': forms.DateInput(format='%d/%m/%Y', attrs={'class': 'form-control'}),
-            'amount': forms.NumberInput(attrs={'class': 'form-control', 'step': 0.00000001}),
-            'total_amount': forms.NumberInput(attrs={'class': 'form-control', 'step': 0.00000001}),
-            'gain': forms.NumberInput(attrs={'class': 'form-control', 'step': 0.00000001}),
-            '_purchase_price': forms.NumberInput(attrs={'class': 'form-control', 'step': 0.00000001}),
-        }
-
-
 class SellForm(forms.ModelForm):
     class Meta:
         model = Coin

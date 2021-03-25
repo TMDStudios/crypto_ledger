@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 import requests, decimal
 from .models import Coin, Price, Profile
-from .forms import CoinForm, EditCoinForm, SellForm, SettingsForm
+from .forms import CoinForm, SellForm, SettingsForm
 from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 from datetime import datetime
@@ -84,13 +84,6 @@ def home(request):
     context['overall_profit'] = overall_profit
 
     return render(request, 'home.html', context)
-
-
-class EditCoinView(UpdateView):
-    model = Coin
-    form_class = EditCoinForm
-    template_name = 'edit_coin.html'
-    success_url = reverse_lazy('home')
 
 
 def add_coin(request):
