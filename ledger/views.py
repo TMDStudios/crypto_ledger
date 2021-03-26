@@ -9,6 +9,11 @@ from datetime import datetime
 from django.forms.models import model_to_dict
 from django.contrib.auth.models import User
 from .serializers import PriceSerializer, CoinSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 
 import schedule
 import time
