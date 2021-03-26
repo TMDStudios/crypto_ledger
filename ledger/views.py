@@ -369,11 +369,14 @@ def get_prices(request):
     serializer = PriceSerializer(coins, many=True)
     return JsonResponse(serializer.data, safe=False)
 
-def get_user_ledger(request):
-    if request.user.is_authenticated:
-        owner = get_object_or_404(User, id=request.user.id)
-        coins = Coin.objects.filter(owner=owner, sold=False, merged=False)
-        serializer = CoinSerializer(coins, many=True)
-        return JsonResponse(serializer.data, safe=False)
-    else:
-        return JsonResponse({}, safe=False)
+class GetUserLedger(APIView):
+    # permission_classes = (IsAuthenticated,)
+    def get(self, request, api_token):
+        try:
+            tokens = Token.objects.all().filter(key=api_token)
+            owner = tokens[0].user
+            coins = Coin.objects.filter(owner=owner, sold=False, merged=False)
+            serializer = CoinSerializer(coins, many=True)
+            return Response(serializer.data)
+        except IndexError:
+            return JsonResponse({}, safe=False)
