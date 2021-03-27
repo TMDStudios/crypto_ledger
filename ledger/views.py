@@ -271,6 +271,7 @@ def all_prices(request):
     context['prices'] = prices
 
     if request.method == "POST":
+        search_field = request.POST.get('search_field')
         coin_name = request.POST.get('coin_name')
         price_usd = request.POST.get('price_usd')
         price_1h = request.POST.get('price_1h')
@@ -278,6 +279,8 @@ def all_prices(request):
         price_btc = request.POST.get('price_btc')
         price_eth = request.POST.get('price_eth')
 
+        if search_field:
+            coins = coins.filter(name__icontains=search_field)
         if coin_name:
             if coin_name == "Asc":
                 coins = coins.order_by('name') 
@@ -370,7 +373,6 @@ def get_prices(request):
     return JsonResponse(serializer.data, safe=False)
 
 class GetUserLedger(APIView):
-    # permission_classes = (IsAuthenticated,)
     def get(self, request, api_token):
         try:
             tokens = Token.objects.all().filter(key=api_token)
