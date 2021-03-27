@@ -44,6 +44,7 @@ coins = [
         ('Chainlink (LINK)', 'LINK'),
         ('Waves (WAVES)', 'WAVES'),
         ('Storj (STORJ)', 'STORJ'),
+        ('Presearch (PRE)', 'PRE'),
         ('Siacoin (SC)', 'SC')
     ]
 
