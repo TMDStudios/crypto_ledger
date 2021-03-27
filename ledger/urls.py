@@ -8,6 +8,7 @@ urlpatterns = [
     path('delete-coin/<int:id>/', views.delete_coin, name='delete-coin'),
     path('coin-details/<int:id>/', views.coin_details, name='coin-details'),
     path('general-details/<int:id>/', views.general_details, name='general-details'),
+    path('api/docs/', views.api_docs, name='api-docs'),
     path('api/get-prices/', views.get_prices, name='get-prices'),
     path('api/get-user-ledger/<str:api_token>', views.GetUserLedger.as_view(), name='get-user-ledger'),
     path('all-prices/', views.all_prices, name='all-prices'),

@@ -380,3 +380,10 @@ class GetUserLedger(APIView):
             return Response(serializer.data)
         except IndexError:
             return JsonResponse({}, safe=False)
+
+def api_docs(request):
+    if request.method == 'POST':
+        tokens = Token.objects.all().filter(user=request.user)
+        return render(request, 'docs.html', {'token': tokens[0]})
+    
+    return render(request, 'docs.html', {})
