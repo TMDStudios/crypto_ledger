@@ -389,3 +389,16 @@ def api_docs(request):
         return render(request, 'docs.html', {'token': tokens[0]})
     
     return render(request, 'docs.html', {})
+
+def activity_log(request):
+    context = {}
+    if request.user.is_authenticated:
+        owner = get_object_or_404(User, id=request.user.id)
+        user_settings = Profile.objects.all()
+        user_settings = user_settings.filter(user=owner)[0]
+        context['dark_mode'] = user_settings.dark_mode
+        coins = Coin.objects.all().filter(owner=owner)
+        coins = coins.order_by('-id')
+        context['coins'] = coins
+
+    return render(request, 'activity_log.html', context)

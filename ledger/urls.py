@@ -13,4 +13,5 @@ urlpatterns = [
     path('api/get-user-ledger/<str:api_token>', views.GetUserLedger.as_view(), name='get-user-ledger'),
     path('all-prices/', views.all_prices, name='all-prices'),
     path('settings/', views.settings, name='settings'),
+    # path('activity-log/', views.activity_log, name='activity-log'),
 ]
