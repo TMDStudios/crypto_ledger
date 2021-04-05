@@ -89,3 +89,17 @@ class SellForm(forms.ModelForm):
                 'step': 0.00000001
                 }),
         }
+
+class PaginationForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('transaction_view',)
+        
+        wwidgets = {
+            'transaction_view': forms.NumberInput(attrs={
+                'id': 'number_field',
+                'style': 'width:5ch;', 
+                'oninput': 'limit_input()',
+                'step': 1
+                }),
+        }

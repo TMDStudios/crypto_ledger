@@ -116,6 +116,36 @@
                 {% endif %}
                 
             {% endfor %}
+            <tr class="align-middle">
+            <td scope="col" style="margin: auto; text-align: center;">
+                {% if coins.has_previous %}
+                    <a href="{% url 'coin-details' id %}?page={{ coins.previous_page_number }}">
+                    <button class="btn btn-primary btn-sm" style="width: 100%; margin: auto;" 
+                    type="button">Previous</button></a>
+                {% else %}
+                    <a href="#">
+                    <button class="btn btn-secondary btn-sm" style="width: 100%; margin: auto;" 
+                    type="button">Previous</button></a>
+                {% endif %}
+            </td>
+            <td colspan="5" scope="col" style="margin: auto; text-align: center;">
+                <form action='.' method='POST'>{% csrf_token %}
+                Transactions Per Page: 
+                {{ form.transaction_view }} <input type="submit" value="Refresh"> 
+                </form>
+            </td>
+            <td scope="col" style="margin: auto; text-align: center;">
+                {% if coins.has_next %}
+                    <a href="{% url 'coin-details' id %}?page={{ coins.next_page_number }}">
+                    <button class="btn btn-primary btn-sm" style="width: 100%; margin: auto;" 
+                    type="button">Next</button></a>
+                {% else %}
+                    <a href="#">
+                    <button class="btn btn-secondary btn-sm" style="width: 100%; margin: auto;" 
+                    type="button">Next</button></a>
+                {% endif %}
+            </td>
+            </tr>
         </table>
     </div>
     

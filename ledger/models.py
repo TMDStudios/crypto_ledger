@@ -20,6 +20,7 @@ class Profile(models.Model):
     ticker_prices = models.TextField(default="", blank=True, null=True)
     dark_mode = models.BooleanField(default=True, blank=True)
     limit_history = models.IntegerField(default=0, null=True, blank=True)
+    transaction_view = models.IntegerField(default=0, null=True, blank=True)
 
     def __str__(self):
         return str(self.user)

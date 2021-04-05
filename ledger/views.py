@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 import requests, decimal
 from .models import Coin, Price, Profile
-from .forms import CoinForm, SellForm, SettingsForm
+from .forms import CoinForm, SellForm, SettingsForm, PaginationForm
 from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 from datetime import datetime
@@ -14,6 +14,7 @@ from rest_framework.views import APIView
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+from django.core.paginator import Paginator
 
 import schedule
 import time
@@ -225,7 +226,7 @@ def delete_coin(request, id):
     return render(request, 'delete_coin.html', context)
 
 def coin_details(request, id):
-    form = SellForm()
+    form = PaginationForm()
     coin_name = get_object_or_404(Coin, id=id)
     name = coin_name.name
     symbol = name[name.find('(') + 1:name.find(')')]
@@ -235,14 +236,46 @@ def coin_details(request, id):
     coins = coins.order_by('-id')
     coins = coins.filter(owner=owner)
     coins = coins.filter(name=name)
-    context['coins'] = coins
-    context['form'] = form
-    context['symbol'] = symbol
-    context['name'] = name.split(" ")[0]
+    context['id'] = id
 
     user_settings = Profile.objects.all()
     user_settings = user_settings.filter(user=owner)[0]
     context['dark_mode'] = user_settings.dark_mode
+    
+    items_per_page = 5
+    if user_settings.transaction_view > 0:
+        items_per_page = user_settings.transaction_view
+
+    paginator = Paginator(coins, items_per_page)
+    page_num = request.GET.get('page', 1)
+    try:
+        if int(page_num) <= int(paginator.num_pages):
+            page = paginator.page(page_num)
+        else:
+            page = paginator.page(1)
+    except:
+        page = paginator.page(1)
+
+    context['coins'] = page
+    context['symbol'] = symbol
+    context['name'] = name.split(" ")[0]
+
+    if request.method == 'POST':
+        form = PaginationForm(request.POST)
+        if form.is_valid():
+            transaction_view = form.cleaned_data['transaction_view']
+
+            user_settings.transaction_view = transaction_view
+            user_settings.save()
+
+            context['form'] = form
+            return redirect(f'../../coin-details/{id}/?page=1')
+    else:
+        form = PaginationForm(initial={'transaction_view': items_per_page})
+        context['form'] = form
+        return render(request, 'coin_details.html', context)
+
+    context['form'] = form
 
     return render(request, 'coin_details.html', context)
 
