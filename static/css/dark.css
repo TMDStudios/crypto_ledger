@@ -44,6 +44,15 @@ html,body,span,tbody,tfoot,thead,tr,th,td {
     margin: auto; 
     text-align: center;
 }
+.logo {
+    box-shadow: 0 0 0 0 rgb(87, 114, 187);
+    transition: 0.2s;
+    border-radius: 8px;
+}
+
+.logo:hover {
+    box-shadow: 0 0 12px 0 rgb(137, 181, 248);
+}
 .link-light {
     color: rgb(228, 228, 228);
 }
