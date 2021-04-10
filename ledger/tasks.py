@@ -14,7 +14,7 @@ def update_prices(update_round):
         'XLM', 'ZEC', 'ALGO', 'ADA', 'ATOM', 'EOS', 'ETH', 'ETC', 'DOT'),
         ('KSM', 'LSK', 'ICX', 'OMG', 'XTZ', 'TRX', 'WAVES', 'REP', 'BAL', 'COMP', 
         'CRV', 'GNO', 'KAVA', 'KNC', 'SNX', 'LINK', 'FIL', 'OXT', 'SC'),
-        ('STORJ', 'BAT', 'USDT', 'MLN', 'GRT', 'PRE')
+        ('STORJ', 'BAT', 'USDT', 'MLN', 'GRT', 'PRE', 'AAVE')
     )
 
     for coin_price in coin_prices:
