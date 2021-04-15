@@ -42,12 +42,12 @@ coins = [
         ('The Graph (GRT)', 'GRT'),
         ('Kava (KAVA)', 'KAVA'),
         ('Chainlink (LINK)', 'LINK'),
-        ('Waves (WAVES)', 'WAVES'),
+        ('Uniswap (UNI)', 'UNI'),
         ('Storj (STORJ)', 'STORJ'),
         ('Presearch (PRE)', 'PRE'),
         ('Siacoin (SC)', 'SC'),
         ('Aave (AAVE)', 'AAVE'),
-        ('Uniswap (UNI)', 'UNI')
+        ('Waves (WAVES)', 'WAVES')
     ]
 
 
