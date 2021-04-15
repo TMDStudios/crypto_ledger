@@ -46,7 +46,8 @@ coins = [
         ('Storj (STORJ)', 'STORJ'),
         ('Presearch (PRE)', 'PRE'),
         ('Siacoin (SC)', 'SC'),
-        ('Aave (AAVE)', 'AAVE')
+        ('Aave (AAVE)', 'AAVE'),
+        ('Uniswap (UNI)', 'UNI')
     ]
 
 
