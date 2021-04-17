@@ -4,6 +4,7 @@ Crypto Ledger is an open-source website that allows users to track their cryptoc
 You can see the website here: http://crypto-ledger.herokuapp.com/
 
 You can also read more about the project on Publish0x: https://www.publish0x.com/open-source-projects?a=oQeZVWD6ep&tid=GitHub
+The website now makes use of Brave Rewards to allow visitors to make small donations.  You can read more about it here: https://www.publish0x.com/open-source-projects/brave-creator-verification-for-heroku-hosted-django-website-xvwxgpe?a=oQeZVWD6ep&tid=GitHub
 
 For more Python projects, visit Project Based Python - https://www.youtube.com/playlist?list=PLyHkjNMo67MWDY_fnHQ9Qu2CEXrx1TV_j
 
