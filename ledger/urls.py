@@ -10,8 +10,8 @@ urlpatterns = [
     path('general-details/<int:id>/', views.general_details, name='general-details'),
     path('api/docs/', views.api_docs, name='api-docs'),
     path('api/get-prices/', views.get_prices, name='get-prices'),
+    path('api/set-prices/', views.set_prices, name='set-prices'),
     path('api/get-user-ledger/<str:api_token>', views.GetUserLedger.as_view(), name='get-user-ledger'),
     path('all-prices/', views.all_prices, name='all-prices'),
     path('settings/', views.settings, name='settings'),
-    # path('activity-log/', views.activity_log, name='activity-log'),
 ]
