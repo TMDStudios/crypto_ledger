@@ -3,6 +3,8 @@ Crypto Ledger is an open-source website that allows users to track their cryptoc
 
 You can see the website here: http://crypto-ledger.herokuapp.com/
 
+*The production code no longer uses Celery.  The move to AJAX can be seen in the features/ajax branch.*
+
 You can also read more about the project on Publish0x: https://www.publish0x.com/open-source-projects?a=oQeZVWD6ep&tid=GitHub
 
 For more Python projects, visit Project Based Python - https://www.youtube.com/playlist?list=PLyHkjNMo67MWDY_fnHQ9Qu2CEXrx1TV_j
