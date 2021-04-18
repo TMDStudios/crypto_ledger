@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'users',
-    'django_celery_results',
     'crispy_forms',
     'django.contrib.humanize'
 ]
@@ -144,10 +143,10 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-CELERY_BROKER_URL = str(os.getenv('CELERY_BROKER_URL'))
+# CELERY_BROKER_URL = str(os.getenv('CELERY_BROKER_URL'))
 
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
