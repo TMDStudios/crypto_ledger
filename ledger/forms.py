@@ -43,11 +43,14 @@ coins = [
         ('Kava (KAVA)', 'KAVA'),
         ('Chainlink (LINK)', 'LINK'),
         ('Uniswap (UNI)', 'UNI'),
-        ('Storj (STORJ)', 'STORJ'),
+        ('NEO GAS (GAS)', 'GAS'),
         ('Presearch (PRE)', 'PRE'),
-        ('Siacoin (SC)', 'SC'),
+        ('Phantasma (SOUL)', 'SOUL'),
         ('Aave (AAVE)', 'AAVE'),
-        ('Waves (WAVES)', 'WAVES')
+        ('Waves (WAVES)', 'WAVES'),
+        ('Storj (STORJ)', 'STORJ'),
+        ('NEO (NEO)', 'NEO'),
+        ('Siacoin (SC)', 'SC'),
     ]
 
 

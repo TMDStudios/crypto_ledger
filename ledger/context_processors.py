@@ -2,7 +2,6 @@ from .models import Profile, Price, Date
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from datetime import datetime
-from .tasks import update_prices
 
 def extras(request):
     update_now = False
@@ -47,15 +46,22 @@ def extras(request):
             saved_update.update_round = 0
         else:
             saved_update.update_round += 1
-        update_prices.delay(update_round)
         saved_update.last_update = datetime.utcnow()
         saved_update.save()
 
         update_now = True
 
+    group = (
+        'btc,bch,dai,dash,doge,ltc,xmr,nano,paxg,xrp,xlm,ada,atom,eos,eth,etc,dot',
+        'ksm,lsk,icx,omg,xtz,trx,waves,rep,bal,comp,crv,gno,kava,knc,snx,oxt,sc',
+        'storj,bat,usdt,mln,grt,pre,aave,uni,zec,algo,link,fil,neo,gas,soul',
+        ''
+    )
+
     if update_now:
         return{'dark_mode': dark_mode, 'bitcoin_price': bitcoin_price, 'last_update': last_update, 
-        'saved_update': saved_update, 'current_time': current_time, 'update_now': '> Reload to update prices <'}
+        'saved_update': saved_update, 'current_time': current_time, 'update_now': '> Reload to update prices <', 
+        'fetch': group[update_round]}
     else:
         return{'dark_mode': dark_mode, 'bitcoin_price': bitcoin_price, 'last_update': last_update, 
-        'saved_update': saved_update, 'current_time': current_time}
+        'saved_update': saved_update, 'current_time': current_time, 'fetch': group[3]}
