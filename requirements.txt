@@ -2,7 +2,6 @@ amqp==5.0.5
 asgiref==3.3.1
 astroid==2.4.2
 billiard==3.6.3.0
-celery==5.0.5
 certifi==2020.12.5
 chardet==4.0.0
 click==7.1.2

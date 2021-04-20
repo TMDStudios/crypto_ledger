@@ -54,7 +54,7 @@ def extras(request):
     group = (
         'btc,bch,dai,dash,doge,ltc,xmr,nano,paxg,xrp,xlm,ada,atom,eos,eth,etc,dot',
         'ksm,lsk,icx,omg,xtz,trx,waves,rep,bal,comp,crv,gno,kava,knc,snx,oxt,sc',
-        'storj,bat,usdt,mln,grt,pre,aave,uni,zec,algo,link,fil',
+        'storj,bat,usdt,mln,grt,pre,aave,uni,zec,algo,link,fil,neo,gas,soul',
         ''
     )
 
