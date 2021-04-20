@@ -405,6 +405,13 @@ def get_prices(request):
     serializer = PriceSerializer(coins, many=True)
     return JsonResponse(serializer.data, safe=False)
 
+def set_prices(request):
+    if request.method == 'POST':
+        update_prices(request.POST.get('coin_data'))
+        return JsonResponse({'data': 'prices updated'}, status=200)
+    else:
+        return JsonResponse({'data': 'prices updated'}, status=200)
+
 class GetUserLedger(APIView):
     def get(self, request, api_token):
         try:

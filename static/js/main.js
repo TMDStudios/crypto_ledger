@@ -8,19 +8,21 @@ for (coin of coinsArr) {
     type: "get",
     success: function (result) {
       try {
-        console.log(result.data.name + ": " + result.data.market_data.price_usd);
+        console.log(
+          result.data.name + ": " + result.data.market_data.price_usd.toString().slice(0, -10)
+        );
         updateDB(
           result.data.symbol +
             "," +
-            result.data.market_data.price_usd +
+            result.data.market_data.price_usd.toString().slice(0, -10) +
             "," +
-            result.data.market_data.percent_change_usd_last_1_hour +
+            result.data.market_data.percent_change_usd_last_1_hour.toString().slice(0, -10) +
             "," +
-            result.data.market_data.percent_change_usd_last_24_hours +
+            result.data.market_data.percent_change_usd_last_24_hours.toString().slice(0, -10) +
             "," +
-            result.data.market_data.price_btc +
+            result.data.market_data.price_btc.toString().slice(0, 12) +
             "," +
-            result.data.market_data.price_eth
+            result.data.market_data.price_eth.toString().slice(0, 16)
         );
       } catch (error) {
         console.log("oops");
