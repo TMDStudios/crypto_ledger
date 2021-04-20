@@ -12,21 +12,31 @@ def update_prices(price_data):
                 coin_price.price = float(price_update[1])
             except TypeError:
                 pass
+            except ValueError:
+                pass
             try:
                 coin_price.price_1h = float(price_update[2])
             except TypeError:
+                pass
+            except ValueError:
                 pass
             try:
                 coin_price.price_24h = float(price_update[3])
             except TypeError:
                 pass
+            except ValueError:
+                pass
             try:
                 coin_price.price_btc = float(price_update[4])
             except TypeError:
                 pass
+            except ValueError:
+                pass
             try:
                 coin_price.price_eth = float(price_update[5])
             except TypeError:
+                pass
+            except ValueError:
                 pass
             
             coin_price.save()

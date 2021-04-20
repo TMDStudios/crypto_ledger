@@ -86,7 +86,10 @@ class Coin(models.Model):
             api_url = 'https://data.messari.io/api/v1/assets/'+symbol.lower()+'/metrics'
             response = requests.get(api_url)
             data = response.json()
-            self._purchase_price = decimal.Decimal(data['data']['market_data']['price_usd'])
+            try:
+                self._purchase_price = decimal.Decimal(data['data']['market_data']['price_usd'])
+            except KeyError:
+                self._purchase_price = decimal.Decimal(0)
             self.current_price = self._purchase_price
 
         return self._purchase_price
