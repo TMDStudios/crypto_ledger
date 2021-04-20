@@ -1,9 +1,7 @@
 # crypto_ledger
-Crypto Ledger is an open-source website that allows users to track their cryptocurrency trades.  The website was built using Python and Django.  It makes use of Celery to asynchronously fetch live prices. *This branch replaces Celery with AJAX*
+Crypto Ledger is an open-source website that allows users to track their cryptocurrency trades.  The website was built using Python and Django.  Celery is no longer used to fetch live prices asynchronously.  It has been replaced with AJAX.
 
 You can see the website here: http://crypto-ledger.herokuapp.com/
-
-*The production code no longer uses Celery.  The move to AJAX can be seen in the features/ajax branch.*
 
 You can also read more about the project on Publish0x: https://www.publish0x.com/open-source-projects?a=oQeZVWD6ep&tid=GitHub
 
