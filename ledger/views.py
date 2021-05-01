@@ -225,6 +225,22 @@ def delete_coin(request, id):
         }
     return render(request, 'delete_coin.html', context)
 
+def reset_ledger(request):  
+    owner = get_object_or_404(User, id=request.user.id)
+    user_settings = Profile.objects.all()
+    user_settings = user_settings.filter(user=owner)[0]
+    coins = Coin.objects.all()
+    coins = coins.order_by('-id')
+    coins = coins.filter(owner=owner)
+    if request.method == "POST":
+        for coin in coins:
+            coin.delete()
+        return redirect('home')
+    context = {
+        'dark_mode': user_settings.dark_mode
+    }
+    return render(request, 'reset_ledger.html', context)
+
 def coin_details(request, id):
     form = PaginationForm()
     coin_name = get_object_or_404(Coin, id=id)

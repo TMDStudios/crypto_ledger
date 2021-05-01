@@ -6,6 +6,7 @@ urlpatterns = [
     path('add-coin/', views.add_coin, name='add-coin'),
     path('sell-coin/<int:id>', views.sell_coin, name='sell-coin'),
     path('delete-coin/<int:id>/', views.delete_coin, name='delete-coin'),
+    path('reset-ledger/', views.reset_ledger, name='reset-ledger'),
     path('coin-details/<int:id>/', views.coin_details, name='coin-details'),
     path('general-details/<int:id>/', views.general_details, name='general-details'),
     path('api/docs/', views.api_docs, name='api-docs'),

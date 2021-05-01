@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %}
+    ${{ bitcoin_price|floatformat:2|intcomma }} - Reset Ledger
+{% endblock %}
+
+{% block content %}
+
+<br/>
+
+{% if user.is_authenticated %}
+    <div style="margin: auto; text-align: center; width: 100%; height: 100%;">
+        <form action='.' method='POST'>{% csrf_token %}
+            <h3>Are you sure you want to reset your ledger?</h3>
+            </br>
+            <input class="btn btn-danger" style="width: 40%; margin: auto;" type='submit' value='Yes' /> 
+            <a href="{% url 'home' %}"><button class="btn btn-primary" style="width: 40%; margin: auto;" 
+            type="button">Cancel</button></a>
+        </form>
+    </div>  
+{% else %}
+    <div style="margin: auto; text-align: center;">Log in to continue</div>
+    <br/>
+    <div class="mb-3">
+        <a class="btn btn-primary" style="width: 100%; height: 100%;" href="{% url 'login' %}" role="button">Log In</a>
+    </div>
+{% endif %}
+
+<br/>
+<br/>
+<div id="center-content" style="width: 60%;">
+    <a href="https://www.presearch.org/signup?rid=2346803" target="_blank">
+    <img src="https://tmdstudios.files.wordpress.com/2021/04/presearch.jpg" title="Presearch" alt="presearch" />
+    </a>
+</div>
+
+
+{% endblock %}
