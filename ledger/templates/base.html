@@ -114,7 +114,7 @@
     </div>
 
     <br />
-    {% if user.is_authenticated %} {% csrf_token %} {% endif %}
+    {% csrf_token %}
     <input type="hidden" id="update_controller" name="update_value" value="{{ fetch }}" readonly />
 
     <!-- Optional JavaScript; choose one of the two! -->
