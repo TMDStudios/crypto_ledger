@@ -3,18 +3,20 @@ from django.http import HttpResponseRedirect, JsonResponse
 import requests, decimal
 from .models import Coin, Price, Profile
 from .forms import CoinForm, SellForm, SettingsForm, PaginationForm
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, View
 from django.urls import reverse_lazy
 from datetime import datetime
 from django.forms.models import model_to_dict
 from django.contrib.auth.models import User
-from .serializers import PriceSerializer, CoinSerializer
+from .serializers import PriceSerializer, CoinSerializer, AddCoinSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from django.core.paginator import Paginator
+from .update_price import update_prices
+from .add_coin_api import add_coin_api
 
 import schedule
 import time
@@ -429,7 +431,7 @@ def set_prices(request):
         return JsonResponse({'data': 'prices updated'}, status=200)
 
 class GetUserLedger(APIView):
-    def get(self, request, api_token):
+    def get(self, request, api_token, *args, **kwargs):
         try:
             tokens = Token.objects.all().filter(key=api_token)
             owner = tokens[0].user
@@ -438,6 +440,21 @@ class GetUserLedger(APIView):
             return Response(serializer.data)
         except IndexError:
             return JsonResponse({}, safe=False)
+
+    def post(self, request, api_token, *args, **kwargs):
+        coin_data = request.data
+
+        serializer = AddCoinSerializer(data=coin_data)
+
+        if serializer.is_valid():
+            name = serializer.data.get('name')
+            amount = serializer.data.get('amount')
+            custom_price = serializer.data.get('custom_price')
+            add_coin_api(coin_data['name'], coin_data['amount'], coin_data['custom_price'], api_token)
+
+            return Response({'message': 'success'})
+        else:
+            return Response(serializer.errors)
 
 def api_docs(request):
     if request.method == 'POST':

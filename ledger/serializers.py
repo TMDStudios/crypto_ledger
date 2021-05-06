@@ -10,3 +10,8 @@ class CoinSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coin
         fields = ('name', 'date_bought', 'purchase_price', 'total_amount', 'total_value')
+
+class AddCoinSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=20)
+    amount = serializers.CharField(max_length=20)
+    custom_price = serializers.CharField(max_length=20)
