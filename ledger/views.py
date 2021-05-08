@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from datetime import datetime
 from django.forms.models import model_to_dict
 from django.contrib.auth.models import User
-from .serializers import PriceSerializer, CoinSerializer, AddCoinSerializer
+from .serializers import PriceSerializer, CoinSerializer, AddCoinSerializer, SellCoinSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -17,6 +17,7 @@ from rest_framework.authtoken.models import Token
 from django.core.paginator import Paginator
 from .update_price import update_prices
 from .add_coin_api import add_coin_api
+from .sell_coin_api import sell_coin_api
 
 import schedule
 import time
@@ -451,6 +452,32 @@ class GetUserLedger(APIView):
             amount = serializer.data.get('amount')
             custom_price = serializer.data.get('custom_price')
             add_coin_api(coin_data['name'], coin_data['amount'], coin_data['custom_price'], api_token)
+
+            return Response({'message': 'success'})
+        else:
+            return Response(serializer.errors)
+
+class BuyCoinAPI(APIView):
+    def post(self, request, api_token, *args, **kwargs):
+        coin_data = request.data
+
+        serializer = AddCoinSerializer(data=coin_data)
+
+        if serializer.is_valid():
+            add_coin_api(coin_data['name'], coin_data['amount'], coin_data['custom_price'], api_token)
+
+            return Response({'message': 'success'})
+        else:
+            return Response(serializer.errors)
+
+class SellCoinAPI(APIView):
+    def post(self, request, api_token, *args, **kwargs):
+        coin_data = request.data
+
+        serializer = SellCoinSerializer(data=coin_data)
+
+        if serializer.is_valid():
+            sell_coin_api(coin_data['coin_id'], coin_data['amount'], api_token)
 
             return Response({'message': 'success'})
         else:

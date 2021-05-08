@@ -1,47 +1,54 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load humanize %} {% block title %} ${{
+bitcoin_price|floatformat:2|intcomma }} - API {% endblock %} {% block content %}
 
-{% load humanize %}
-
-{% block title %}
-    ${{ bitcoin_price|floatformat:2|intcomma }} - API
-{% endblock %}
-
-{% block content %}
-
-<br/>
+<br />
 <h2 align="center">Crypto Ledger API</h2>
-<br/>
-<hr style="height:1px; margin: auto;">
-<br/>
+<br />
+<hr style="height: 1px; margin: auto" />
+<br />
 
-<div style="padding-left: 20%; padding-right: 20%;">
-<p>Crypto Ledger currently supports two API functions.  You can either fetch all prices, or view your full ledger in 
-JSON form.</p>
-<p>No API key is required to fetch coin prices.  Simply use: 
-<br/>
-<mark>https://crypto-ledger.herokuapp.com/api/get-prices</mark></p>
-<p>You will need an API key to see your full ledger using the API.  Click on the button below to generate your key.</p>
-<p><strong>Important:</strong> Treat your API key like you would a password.  Do not share it with anyone or display it 
-publicly.</p>
-<p>You can fetch your full ledger with the following URL:
-<br/>
-<mark>https://crypto-ledger.herokuapp.com/api/get-user-ledger/YOUR_API_KEY</mark></p>
+<div style="padding-left: 20%; padding-right: 20%">
+  <p>
+    Crypto Ledger currently supports two API functions. You can either fetch all prices, or view
+    your full ledger in JSON form.
+  </p>
+  <p>
+    No API key is required to fetch coin prices. Simply use:
+    <br />
+    <mark>https://crypto-ledger.herokuapp.com/api/get-prices</mark>
+  </p>
+  <p>
+    You will need an API key to see your full ledger using the API. Click on the button below to
+    generate your key.
+  </p>
+  <p>
+    <strong>Important:</strong> Treat your API key like you would a password. Do not share it with
+    anyone or display it publicly.
+  </p>
+  <p>
+    You can fetch your full ledger and buy/sell coins with the following URL:
+    <br />
+    <mark>https://crypto-ledger.herokuapp.com/api/get-user-ledger/YOUR_API_KEY</mark>
+  </p>
 </div>
 
 {% if user.is_authenticated %}
-    <br/>
-    {% if token %}
-        <div id="center-content">Your API Key: {{ token }}</div>
-    {% else %}
-        <div id="center-content">
-        <form action="." method="POST">
-            {% csrf_token %}
-            <input type="submit" value="Get Token" class="btn btn-primary" style="width: 40%; height: 100%;">
-        </form>
-        </div>
-    {% endif %}
-    <br/>
-    <hr style="height:1px; margin: auto;">
+<br />
+{% if token %}
+<div id="center-content">Your API Key: {{ token }}</div>
+{% else %}
+<div id="center-content">
+  <form action="." method="POST">
+    {% csrf_token %}
+    <input
+      type="submit"
+      value="Get Token"
+      class="btn btn-primary"
+      style="width: 40%; height: 100%"
+    />
+  </form>
+</div>
 {% endif %}
-
-{% endblock %}
+<br />
+<hr style="height: 1px; margin: auto" />
+{% endif %} {% endblock %}

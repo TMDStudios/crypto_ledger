@@ -13,6 +13,8 @@ urlpatterns = [
     path('api/get-prices/', views.get_prices, name='get-prices'),
     path('api/set-prices/', views.set_prices, name='set-prices'),
     path('api/get-user-ledger/<str:api_token>', views.GetUserLedger.as_view(), name='get-user-ledger'),
+    path('api/buy-coin-api/<str:api_token>', views.BuyCoinAPI.as_view(), name='buy-coin-api'),
+    path('api/sell-coin-api/<str:api_token>', views.SellCoinAPI.as_view(), name='sell-coin-api'),
     path('all-prices/', views.all_prices, name='all-prices'),
     path('settings/', views.settings, name='settings'),
 ]
