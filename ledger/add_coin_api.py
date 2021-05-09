@@ -29,7 +29,6 @@ def add_coin_api(coin_name, amount, custom_price, api_token):
     coin_price = get_object_or_404(Price, symbol=symbol)
 
     coin.custom_price = decimal.Decimal(custom_price)
-    
 
     if custom_price == '0':
         coin.custom_price = coin_price.price
@@ -41,6 +40,13 @@ def add_coin_api(coin_name, amount, custom_price, api_token):
     coin.total_spent = total_spent + (decimal.Decimal(str(amount)) * coin.purchase_price)
     coin._purchase_price = coin.total_spent / decimal.Decimal(str(total_amount))
     coin.current_price = coin_price.price
+
+    coin.price_difference = coin.current_price / coin.purchase_price * decimal.Decimal('100') - decimal.Decimal('100')  #hmm
+    current_price_decimal = decimal.Decimal(str(coin.current_price))
+    coin.value = current_price_decimal * coin.total_amount
+    coin.total_profit = coin.current_price * coin.total_amount - coin.purchase_price * coin.total_amount
+
+    coin.total_value = current_price_decimal * coin.total_amount
 
     coin.save()
     print('coin info', coin.name, coin.current_price)
