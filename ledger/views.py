@@ -436,26 +436,11 @@ class GetUserLedger(APIView):
         try:
             tokens = Token.objects.all().filter(key=api_token)
             owner = tokens[0].user
-            coins = Coin.objects.filter(owner=owner, sold=False, merged=False)
+            coins = Coin.objects.filter(owner=owner)
             serializer = CoinSerializer(coins, many=True)
             return Response(serializer.data)
         except IndexError:
             return JsonResponse({}, safe=False)
-
-    def post(self, request, api_token, *args, **kwargs):
-        coin_data = request.data
-
-        serializer = AddCoinSerializer(data=coin_data)
-
-        if serializer.is_valid():
-            name = serializer.data.get('name')
-            amount = serializer.data.get('amount')
-            custom_price = serializer.data.get('custom_price')
-            add_coin_api(coin_data['name'], coin_data['amount'], coin_data['custom_price'], api_token)
-
-            return Response({'message': 'success'})
-        else:
-            return Response(serializer.errors)
 
 class BuyCoinAPI(APIView):
     def post(self, request, api_token, *args, **kwargs):
