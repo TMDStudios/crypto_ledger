@@ -35,7 +35,7 @@ coins = [
         ('Syntetix (SNX)', 'SNX'),
         ('Filecoin (FIL)', 'FIL'),
         ('Orchid (OXT)', 'OXT'),
-        ('Compound (COMP)', 'COMP'),
+        ('Telcoin (TEL)', 'TEL'),
         ('Cosmos (ATOM)', 'ATOM'),
         ('Augur (REP)', 'REP'),
         ('Basic Attention Token (BAT)', 'BAT'),
@@ -47,10 +47,11 @@ coins = [
         ('Presearch (PRE)', 'PRE'),
         ('Phantasma (SOUL)', 'SOUL'),
         ('Aave (AAVE)', 'AAVE'),
-        ('Waves (WAVES)', 'WAVES'),
-        ('Storj (STORJ)', 'STORJ'),
         ('NEO (NEO)', 'NEO'),
         ('Siacoin (SC)', 'SC'),
+        ('Waves (WAVES)', 'WAVES'),
+        ('Storj (STORJ)', 'STORJ'),
+        ('Compound (COMP)', 'COMP'),
     ]
 
 
