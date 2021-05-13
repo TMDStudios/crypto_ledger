@@ -52,9 +52,9 @@ def extras(request):
         update_now = True
 
     group = (
-        'btc,bch,dai,dash,doge,ltc,xmr,nano,paxg,xrp,xlm,ada,atom,eos,eth,etc,dot',
-        'ksm,lsk,icx,omg,xtz,trx,waves,rep,bal,comp,crv,gno,kava,knc,snx,oxt,sc',
-        'storj,bat,usdt,mln,grt,pre,aave,uni,zec,algo,link,fil,neo,gas,soul',
+        'btc,bch,dai,dash,doge,ltc,xmr,nano,paxg,xrp,xlm,ada,atom,eos,eth,etc,dot,tel',
+        'ksm,lsk,icx,omg,xtz,trx,waves,rep,bal,comp,crv,gno,kava,knc,snx,oxt,sc,mkr',
+        'storj,bat,usdt,mln,grt,pre,aave,uni,zec,algo,link,fil,neo,gas,soul,ren,zrx',
         ''
     )
 

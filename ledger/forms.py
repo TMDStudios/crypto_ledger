@@ -48,10 +48,13 @@ coins = [
         ('Phantasma (SOUL)', 'SOUL'),
         ('Aave (AAVE)', 'AAVE'),
         ('NEO (NEO)', 'NEO'),
-        ('Siacoin (SC)', 'SC'),
-        ('Waves (WAVES)', 'WAVES'),
+        ('Ren (REN)', 'REN'),
+        ('0x (ZRX)', 'ZRX'),
         ('Storj (STORJ)', 'STORJ'),
         ('Compound (COMP)', 'COMP'),
+        ('Maker (MKR)', 'MKR'),
+        ('Siacoin (SC)', 'SC'),
+        ('Waves (WAVES)', 'WAVES'),
     ]
 
 
