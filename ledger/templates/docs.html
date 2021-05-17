@@ -1,5 +1,12 @@
-{% extends 'base.html' %} {% load humanize %} {% block title %} ${{
-bitcoin_price|floatformat:2|intcomma }} - API {% endblock %} {% block content %}
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %}
+    ${{ bitcoin_price|floatformat:2|intcomma }} - API
+{% endblock %}
+
+{% block content %}
 
 <br />
 <h2 align="center">Crypto Ledger API</h2>
