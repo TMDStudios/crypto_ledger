@@ -104,42 +104,48 @@ def add_coin(request):
             amount = form.cleaned_data['amount']
             custom_price = form.cleaned_data['custom_price']
 
-            coins = Coin.objects.all()
-            coins = coins.filter(owner=owner)
+            if amount > 0.00000001:
 
-            total_spent = 0
-            total_coins = 0
-            for coin in coins:
-                if coin.name == name and not coin.sold and not coin.merged:
-                    total_coins += coin.total_amount
-                    total_spent += coin.total_spent
-                    coin.date_sold = datetime.utcnow()
-                    coin.merged = True
-                    coin.save()
+                coins = Coin.objects.all()
+                coins = coins.filter(owner=owner)
 
-            total_amount = total_coins + amount
-            coin = Coin(owner=owner, name=name, amount=amount, total_amount=total_amount)
+                total_spent = 0
+                total_coins = 0
+                for coin in coins:
+                    if coin.name == name and not coin.sold and not coin.merged:
+                        total_coins += coin.total_amount
+                        total_spent += coin.total_spent
+                        coin.date_sold = datetime.utcnow()
+                        coin.merged = True
+                        coin.save()
 
-            symbol = coin.name[coin.name.find('(') + 1:coin.name.find(')')]
-            coin_price = get_object_or_404(Price, symbol=symbol)
+                total_amount = total_coins + amount
+                coin = Coin(owner=owner, name=name, amount=amount, total_amount=total_amount)
 
-            coin.custom_price = decimal.Decimal(str(custom_price))
-            
+                symbol = coin.name[coin.name.find('(') + 1:coin.name.find(')')]
+                coin_price = get_object_or_404(Price, symbol=symbol)
 
-            if custom_price == 0:
-                coin.custom_price = coin_price.price
-            else:
                 coin.custom_price = decimal.Decimal(str(custom_price))
-
-            coin._purchase_price = coin.custom_price
                 
-            coin.total_spent = total_spent + (amount * coin.purchase_price)
-            coin._purchase_price = coin.total_spent / decimal.Decimal(str(total_amount))
-            coin.current_price = coin_price.price
 
-            coin.save()
+                if custom_price == 0:
+                    coin.custom_price = coin_price.price
+                else:
+                    coin.custom_price = decimal.Decimal(str(custom_price))
 
-            return redirect('home')
+                coin._purchase_price = coin.custom_price
+                    
+                coin.total_spent = total_spent + (amount * coin.purchase_price)
+                coin._purchase_price = coin.total_spent / decimal.Decimal(str(total_amount))
+                coin.current_price = coin_price.price
+
+                coin.save()
+
+                return redirect('home')
+
+            else:
+                form = CoinForm()
+                return render(request, 'add_coin.html', {'form': form, 'issue': 'Invalid Amount'})
         else:
             issue = form.errors
             usr = request.user.id
