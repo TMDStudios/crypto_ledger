@@ -42,7 +42,7 @@ def extras(request):
     update_timer = last_update - current_time
     if update_timer > 60 or update_timer < -60:
         update_round = saved_update.update_round
-        if update_round > 1:
+        if update_round > 2:
             saved_update.update_round = 0
         else:
             saved_update.update_round += 1
@@ -52,9 +52,10 @@ def extras(request):
         update_now = True
 
     group = (
-        'btc,bch,dai,dash,doge,ltc,xmr,nano,paxg,xrp,xlm,ada,atom,eos,eth,etc,dot,tel',
-        'ksm,lsk,icx,omg,xtz,trx,waves,rep,bal,comp,crv,gno,kava,knc,snx,oxt,sc,mkr',
-        'storj,bat,usdt,mln,grt,pre,aave,uni,zec,algo,link,fil,neo,gas,soul,ren,zrx',
+        'btc,eth,bch,dai,dash,doge,ltc,xmr,nano,paxg,xrp,xlm,ada,atom,eos,eth,etc,dot',
+        'btc,eth,ksm,lsk,icx,omg,xtz,trx,waves,rep,bal,comp,crv,gno,kava,knc,snx,oxt',
+        'btc,eth,storj,bat,usdt,mln,grt,pre,aave,uni,zec,algo,link,fil,neo,gas,soul,ren',
+        'btc,eth,tel,mkr,mina,matic,dot,sc,zrx',
         ''
     )
 

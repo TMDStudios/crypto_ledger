@@ -54,7 +54,9 @@ coins = [
         ('Compound (COMP)', 'COMP'),
         ('Maker (MKR)', 'MKR'),
         ('Siacoin (SC)', 'SC'),
+        ('Polygon (MATIC)', 'MATIC'),
         ('Waves (WAVES)', 'WAVES'),
+        ('Mina (MINA)', 'MINA'),
     ]
 
 
