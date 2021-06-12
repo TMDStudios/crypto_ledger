@@ -56,7 +56,7 @@ coins = [
         ('Siacoin (SC)', 'SC'),
         ('Polygon (MATIC)', 'MATIC'),
         ('Waves (WAVES)', 'WAVES'),
-        ('Mina (MINA)', 'MINA'),
+        ('Decentraland (MANA)', 'MANA'),
     ]
 
 
