@@ -283,7 +283,7 @@ def coin_details(request, id):
 
     context['coins'] = page
     context['symbol'] = symbol
-    context['name'] = name.split(" ")[0]
+    context['name'] = name.split("(")[0]
 
     if request.method == 'POST':
         form = PaginationForm(request.POST)
@@ -309,7 +309,7 @@ def general_details(request, id):
     symbol = coin.symbol
     context = {}
     context['symbol'] = symbol
-    context['name'] = coin.name.split(" ")[0]
+    context['name'] = coin.name.split("(")[0]
 
     return render(request, 'general_details.html', context)
 
