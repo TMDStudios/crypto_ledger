@@ -1,5 +1,7 @@
 # crypto_ledger
-Crypto Ledger is an open-source website that allows users to track their cryptocurrency trades.  The website was built using Python and Django.  Celery is no longer used to fetch live prices asynchronously.  It has been replaced with AJAX.
+Crypto Ledger is an open-source website that allows users to track their cryptocurrency trades.  The website was built using Python and Django.  Celery is no longer used to fetch live prices asynchronously.  It has been replaced with AJAX.  The full ledger and price data can be accessed through the API.  Price data is updated when the page loads.
+
+The website is extended through the Crypto Ledger App, which can be found here: https://github.com/TMDStudios/crypto_ledger_app_kotlin
 
 You can see the website here: http://crypto-ledger.herokuapp.com/
 
@@ -13,7 +15,7 @@ Py Learning Companion is available on Android and iOS.
 
 Android:  https://play.google.com/store/apps/details?id=com.tmdstudios.python
 
-iOS:  https://apps.apple.com/us/app/py-learning-companion/id1535395962
+iOS:  Temporarily Unavailable
 
 Amazon: https://www.amazon.com/dp/B08RLPC9LR
 
