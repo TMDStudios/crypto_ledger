@@ -125,6 +125,24 @@
                         {% endif %}
                     {% endfor %}
                 </tr>
+                <tr>
+                    {% for item in form.ticker_prices %}
+                        {% if forloop.counter0 > 54 and forloop.counter0 < 60 %}
+                            <td style="margin: auto; text-align: center; width: 8%;">
+                                <span id="coin-symbol"> {{ item }} </span>
+                            </td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for item in form.ticker_prices %}
+                        {% if forloop.counter0 > 59 and forloop.counter0 < 65 %}
+                            <td style="margin: auto; text-align: center; width: 8%;">
+                                <span id="coin-symbol"> {{ item }} </span>
+                            </td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
             </table>
             <hr style="height:1px; margin: auto;">
             <br/>

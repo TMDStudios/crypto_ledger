@@ -55,7 +55,7 @@ def extras(request):
         'btc,eth,bch,dai,dash,doge,ltc,xmr,nano,paxg,xrp,xlm,ada,atom,eos,eth,etc,dot',
         'btc,eth,ksm,lsk,icx,omg,xtz,trx,waves,rep,bal,comp,crv,gno,kava,knc,snx,oxt',
         'btc,eth,storj,bat,usdt,mln,grt,pre,aave,uni,zec,algo,link,fil,neo,gas,soul,ren',
-        'btc,eth,tel,mkr,mana,matic,dot,sc,zrx',
+        'btc,tel,mkr,mana,matic,dot,sc,zrx,bnb,sol,shib,usdc,luna,avax,wbtc,busd,vet,axs',
         ''
     )
 
