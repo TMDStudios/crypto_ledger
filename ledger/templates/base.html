@@ -99,6 +99,17 @@
 
     <br />
 
+    {% if showApp %}
+    <div style="width: 60%; margin: auto; text-align: center">
+      <a href="https://play.google.com/store/apps/details?id=com.tmdstudios.cryptoledgerkotlin">
+        <img
+          class="logo"
+          style="max-width: 100%"
+          src="https://tmdstudios.files.wordpress.com/2021/11/clbanner-1.png?w=600"
+        />
+      </a>
+    </div>
+    {% else %}
     <div style="width: 60%; margin: auto; text-align: center">
       <a href="https://tmdstudios.wordpress.com/py-learning-companion/">
         {% if dark_mode %}
@@ -116,7 +127,8 @@
         {% endif %}
       </a>
     </div>
-
+    {% endif %}
+    
     <br />
     {% csrf_token %}
     <input type="hidden" id="update_controller" name="update_value" value="{{ fetch }}" readonly />
