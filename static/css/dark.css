@@ -28,17 +28,17 @@ html,body,span,tbody,tfoot,thead,tr,th,td {
 #active-coin-table-head {
     margin: auto; 
     text-align: center; 
-    width: 10vw;
+    width: 8vw;
 }
 #all-prices-table-head {
     margin: auto; 
     text-align: center; 
-    width: 10vw;
+    width: 8vw;
 }
 #all-prices-table-head-contents {
-    width: 10vw; 
+    width: 8vw; 
     margin: auto; 
-    font-size: large
+    font-size: medium
 }
 #center-content {
     margin: auto; 
