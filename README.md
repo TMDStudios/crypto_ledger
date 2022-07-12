@@ -1,6 +1,6 @@
 # crypto_ledger
 
-![Crypto Ledger Logo](static\images\CryptoLedger.png)
+![Crypto Ledger Logo](static/images/CryptoLedger.png)
 
 Crypto Ledger is an open-source website that allows users to track their cryptocurrency trades.  The website was built using Python and Django.  Celery is no longer used to fetch live prices asynchronously.  It has been replaced with AJAX.  The full ledger and price data can be accessed through the API.  Price data is updated when the page loads.
 
