@@ -1,4 +1,6 @@
-# crypto_ledger
+Crypto Ledger
+
+![Heroku Badge](https://img.shields.io/badge/deployment-heroku-blueviolet) ![App Badge](https://img.shields.io/badge/app-android-brightgreen)
 
 ![Crypto Ledger Logo](static/images/CryptoLedger.png)
 
