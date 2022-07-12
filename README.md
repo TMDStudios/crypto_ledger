@@ -1,4 +1,4 @@
-Crypto Ledger
+#Crypto Ledger
 
 ![Heroku Badge](https://img.shields.io/badge/deployment-heroku-blueviolet) ![App Badge](https://img.shields.io/badge/app-android-brightgreen)
 
@@ -10,4 +10,24 @@ The website is extended through the Crypto Ledger App, which can be found here: 
 
 You can see the website here: http://crypto-ledger.herokuapp.com/
 
-You can also read more about the project on Publish0x: https://www.publish0x.com/open-source-projects?a=oQeZVWD6ep&tid=GitHub
+You can also read more about the project on Publish0x: [Crypto Ledger](https://www.publish0x.com/open-source-projects/crypto-ledger-an-open-source-website-to-track-your-crypto-as-xykxeqd?a=oQeZVWD6ep&tid=GitHub 'Crypto Ledger')
+
+
+#Key Features
+
+- Track crypto currency trades with 'smart purchase prices'
+- Access full transaction history for each coin
+- View Live price data
+- Quick overview of daily, weekly, and monthly price volatility
+- Custom ticker prices
+- Full API access  
+
+
+#Related
+
+[Crypto Ledger Spring](https://github.com/TMDStudios/crypto_ledger_spring 'Crypto Ledger Spring') - Spring Boot version of Crypto Ledger
+
+
+#You may also like...
+
+[Mock Trader](https://github.com/TMDStudios/MockTrader 'Mock Trader') - Open-source Bitcoin trading game
