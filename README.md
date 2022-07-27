@@ -18,7 +18,7 @@ You can also read more about the project on Publish0x: [Crypto Ledger](https://w
 - Track crypto currency trades with 'smart purchase prices'
 - Access full transaction history for each coin
 - View Live price data
-- Quick overview of daily, weekly, and monthly price volatility
+- Quick overview of hourly, daily, and weekly price volatility
 - Custom ticker prices
 - Full API access  
 
