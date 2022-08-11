@@ -1,6 +1,8 @@
 # Crypto Ledger
 
-![Heroku Badge](https://img.shields.io/badge/deployment-heroku-blueviolet) ![App Badge](https://img.shields.io/badge/app-android-brightgreen)
+> NOTE: This version of Crypto Ledger is no longer live.<br>The new version can be found here: [Crypto Ledger Spring](https://github.com/TMDStudios/crypto_ledger_spring 'Crypto Ledger Spring') - Spring Boot version of Crypto Ledger
+
+![App Badge](https://img.shields.io/badge/app-android-brightgreen)
 
 ![Crypto Ledger Logo](static/images/CryptoLedger.png)
 
