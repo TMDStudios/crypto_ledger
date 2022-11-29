@@ -2,15 +2,15 @@
 
 > NOTE: This version of Crypto Ledger is no longer live.<br>The new version can be found here: [Crypto Ledger Spring](https://github.com/TMDStudios/crypto_ledger_spring 'Crypto Ledger Spring') - Spring Boot version of Crypto Ledger
 
-![App Badge](https://img.shields.io/badge/app-android-brightgreen)
+![MIT License](https://img.shields.io/badge/license-MIT-brightgreen)
 
 ![Crypto Ledger Logo](static/images/CryptoLedger.png)
 
 Crypto Ledger is an open-source website that allows users to track their cryptocurrency trades.  The website was built using Python and Django.  Celery is no longer used to fetch live prices asynchronously.  It has been replaced with AJAX.  The full ledger and price data can be accessed through the API.  Price data is updated when the page loads.
 
-The website is extended through the Crypto Ledger App, which can be found here: [Crypto Ledger App](https://github.com/TMDStudios/crypto_ledger_app_kotlin 'Crypto Ledger App')
+~~The website is extended through the Crypto Ledger App, which can be found here: [Crypto Ledger App](https://github.com/TMDStudios/crypto_ledger_app_kotlin 'Crypto Ledger App')~~
 
-You can see the website here: http://crypto-ledger.herokuapp.com/
+~~You can see the website here: http://crypto-ledger.herokuapp.com/~~
 
 You can also read more about the project on Publish0x: [Crypto Ledger](https://www.publish0x.com/open-source-projects/crypto-ledger-an-open-source-website-to-track-your-crypto-as-xykxeqd?a=oQeZVWD6ep&tid=GitHub 'Crypto Ledger')
 
