@@ -12,7 +12,7 @@ You can see the website here: http://cryptoledger.pythonanywhere.com
 
 You can also read more about the project on Publish0x: [Crypto Ledger](https://www.publish0x.com/open-source-projects/crypto-ledger-an-open-source-website-to-track-your-crypto-as-xykxeqd?a=oQeZVWD6ep&tid=GitHub 'Crypto Ledger')
 
-> NOTE: The Spring version of Crypto Ledger can be found here: [Crypto Ledger Spring](https://github.com/TMDStudios/crypto_ledger_spring 'Crypto Ledger Spring') - Spring Boot version of Crypto Ledger
+> NOTE: The Spring version of Crypto Ledger can be found here: [Crypto Ledger Spring](https://github.com/TMDStudios/crypto_ledger_spring 'Crypto Ledger Spring')
 
 ## Key Features
 
@@ -26,9 +26,15 @@ You can also read more about the project on Publish0x: [Crypto Ledger](https://w
 
 ## Related
 
-[Crypto Ledger Spring](https://github.com/TMDStudios/crypto_ledger_spring 'Crypto Ledger Spring') - Spring Boot version of Crypto Ledger
+[Crypto Ledger App](https://play.google.com/store/apps/details?id=com.tmdstudios.cryptoledgerkotlin 'Crypto Ledger') - Crypto Ledger App
+
+[Crypto Ledger Spring](https://github.com/TMDStudios/crypto_ledger_spring 'Crypto Ledger Spring') - Spring version of Crypto Ledger
 
 
 ## You may also like...
 
 [Mock Trader](https://github.com/TMDStudios/MockTrader 'Mock Trader') - Open-source Bitcoin trading game
+
+[Py Learning Companion](https://play.google.com/store/apps/details?id=com.tmdstudios.python 'Py Learning Companion') - Python Study App
+
+[Game Room](https://github.com/TMDStudios/GameRoom 'Game Room') - A platform for educators to play games and/or review materials with their students
