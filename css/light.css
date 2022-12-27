@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+}
+html,body,span,tbody,tfoot,thead,tr,th,td {
+    background: #ffffff; 
+    font-family: 'Lato', helvetica, arial, sans-serif; 
+    font-size: 16px; 
+    color: #222;
+}
+#broke-even {
+    color:goldenrod; 
+}
+#loss {
+    color: red;
+}
+#gain {
+    color: forestgreen;
+}
+#plain-font {
+    color: #222;
+    font-size: x-large; 
+    padding-right: 5px;
+}
+#coin-symbol {
+    font-size: 20px; 
+    font-family: monospace, monospace;
+}
+#active-coin-table-head {
+    margin: auto; 
+    text-align: center; 
+    width: 8vw;
+}
+#all-prices-table-head {
+    margin: auto; 
+    text-align: center; 
+    width: 8vw;
+}
+#all-prices-table-head-contents {
+    width: 8vw; 
+    margin: auto; 
+    font-size: medium
+}
+#center-content {
+    margin: auto; 
+    text-align: center;
+}
+.logo {
+    box-shadow: 0 0 0 0 rgb(87, 114, 187);
+    transition: 0.2s;
+    border-radius: 8px;
+}
+
+.logo:hover {
+    box-shadow: 0 0 12px 0 rgb(20, 45, 82);
+}
+.link-light {
+    color: #222;
+}
+.btn-outline-light {
+    color: #222;
+}
