@@ -153,10 +153,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 options = DATABASES['default'].get('OPTIONS', {})
 options.pop('sslmode', None)
 
-EMAIL_HOST = 'smtp.zoho.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = str(os.getenv('EMAIL_HOST_USER'))
-DEFAULT_FROM_EMAIL = str(os.getenv('EMAIL_HOST_USER'))
-EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
+EMAIL_HOST_USER = 'tmdstudioshelp@gmail.com'
+EMAIL_HOST_PASSWORD = 'vhksdrkreswefnef'
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
